@@ -1,27 +1,26 @@
-import { useState, useRef } from "react";
-import { useInputStore } from "../store/inputStore";
-export default function InputNumber({
-  label,
-  className,
-  max,
-  defaultValue,
-  nogap,
-  inputStoreType,
-}) {
-  const count = useInputStore((state) => state[inputStoreType]);
-  const setCount = useInputStore((state) => state[`set${inputStoreType}`]);
-  const increaseCount = useInputStore(
-    (state) => state[`increase${inputStoreType}`]
-  );
-  const decreaseCount = useInputStore(
-    (state) => state[`decrease${inputStoreType}`]
-  );
+import { useRef } from "react";
+import useStore from "../../store/useStore";
+
+let n = 0;
+const generateUniqueId = () => {
+  n++;
+  return `id-${n}`;
+};
+
+export default function InputNumber({ label, className, nogap, inputStoreType }) {
+  const uniqueId = generateUniqueId();
+
+  const count = useStore((state) => state[inputStoreType]);
+  const increase = useStore((state) => state[`increase${inputStoreType}`]);
+  const decrease = useStore((state) => state[`decrease${inputStoreType}`]);
+  const setCount = useStore((state) => state[`set${inputStoreType}`]);
+  const isLoadSavedTimer = useStore((state) => state.isLoadSavedTimer);
 
   const timerRef = useRef(null);
 
   function incrementHold() {
     timerRef.current = setTimeout(() => {
-      timerRef.current = setInterval(() => increaseCount(), 100);
+      timerRef.current = setInterval(() => increase(), 100);
     }, 100);
   }
 
@@ -29,7 +28,7 @@ export default function InputNumber({
     timerRef.current = setTimeout(() => {
       timerRef.current = setInterval(
         // decrement only if count is greater than 0
-        () => setCount((prev) => (prev <= 0 ? prev : prev - 1)),
+        () => decrease(),
         100
       );
     }, 100);
@@ -40,37 +39,31 @@ export default function InputNumber({
   }
 
   function incrementClick() {
-    setCount((prev) => prev + 1);
+    increase();
   }
 
   function decrementClick() {
     // decrement only if count is greater than 0
-    setCount((prev) => (prev <= 0 ? prev : prev - 1));
+
+    if (count <= 0) return;
+    decrease();
   }
 
   function handleChange(e) {
-    // if input is greater than max, set to max
-    const value = parseInt(e.target.value, 10); // Parse the value as an integer
-
-    // Check if the parsed value is NaN
-    if (isNaN(value)) {
-      setCount(0); // or any other default value you prefer
-      return;
-    }
-    // If input is greater than max, set to max
-    if (max && value > max) {
-      setCount(Number(max));
-      return;
-    }
-
-    setCount(value);
+    setCount(e.target.value);
+  }
+  function handleOnBlur(e) {
+    let value = e.target.value;
+    // if the value is zero or lower set it to 1
+    if (value === "" || value == 0) return setCount(1);
+    // remove any leading zeros
   }
 
   function handleInvalidInput(e) {
-    const regex = /^[0-9\b]+$/;
-    if (!regex.test(e.key) && e.key !== "Backspace") {
-      e.preventDefault();
-    }
+    // const regex = /^[0-9\b]+$/;
+    // if (!regex.test(e.key) && e.key !== "Backspace") {
+    //   return;
+    // }
   }
 
   return (
@@ -98,12 +91,14 @@ export default function InputNumber({
           border border-r border-neutral-600 rounded-l-lg 
           focus:outline-none focus:text-2xl focus:bg-[#313030]
           focus:border-gray-500`}
+          style={{ backgroundColor: isLoadSavedTimer ? "#2b2a2a" : "#242424" }}
           type="number"
-          id={label}
+          id={label + uniqueId}
           name={label}
           value={count}
           onChange={handleChange}
           onKeyDown={handleInvalidInput}
+          onBlur={handleOnBlur}
         />
 
         <div className=" border text-sm h-12 border-l-0 rounded-e-lg border-neutral-600">

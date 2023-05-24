@@ -1,11 +1,4 @@
-export default function Button({
-  text,
-  onClick,
-  color,
-  hoverColor,
-  textColor,
-  width,
-}) {
+export default function Button({ text, onClick, color, hoverColor, textColor, width }) {
   return (
     <button
       onClick={onClick}
@@ -16,7 +9,7 @@ export default function Button({
         text-xl sm:text-3xl
         py-2 px-4 text-center rounded-3xl
     border w-24 sm:w-32 border-transparent hover:border-black 
-    transition-colors duration-200`}
+    transition-colors duration-200 focus:outline-none focus:border-neutral-600`}
     >
       {text}
     </button>
