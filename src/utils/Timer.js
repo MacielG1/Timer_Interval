@@ -29,7 +29,6 @@ export default class Timer {
   step() {
     let drift = performance.now() - this.expected;
     if (drift > this.interval) {
-      console.log("Drift Higher");
       if (this.errorFunc) this.errorFunc();
     }
     if (!this.stopped) {

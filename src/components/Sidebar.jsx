@@ -1,14 +1,5 @@
 import useStore from "../store/useStore";
-
-let items = [{ id: 1, title: "Timer 1", rounds: 1, work: "00:00", workColor: "#fff", rest: "00:00", restColor: "#fff", prepare: "00:00", prepareColor: "#fff" }];
-
-let closeButton = (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <rect x="1" y="1" width="22" height="22" rx="10" ry="10" fill="none" stroke="#b52435" strokeWidth="2" />
-    <line x1="7" y1="7" x2="17" y2="17" stroke="#b52435" strokeWidth="2" />
-    <line x1="7" y1="17" x2="17" y2="7" stroke="#b52435" strokeWidth="2" />
-  </svg>
-);
+import CloseIcon from "../assets/CloseIcon.svg";
 
 export default function Sidebar() {
   const removeBorders = useStore((state) => state.removeUIBorders);
@@ -38,7 +29,7 @@ export default function Sidebar() {
       PrepareSeconds: timer.PrepareSeconds,
     });
 
-    // adds a visual effect when the button when clicked
+    // adds an effect to the inputs when the btn is clicked
     setIsLoadSavedTimer(true);
     setTimeout(() => {
       setIsLoadSavedTimer(false);
@@ -55,7 +46,9 @@ export default function Sidebar() {
             style={{ borderColor: enableBackgroundColors && removeBorders ? "transparent" : "" }}
           >
             <div className="p-2 px-3 absolute top-0 right-0">
-              <button onClick={() => handleDelete(i.id)}>{closeButton}</button>
+              <button onClick={() => handleDelete(i.id)}>
+                <img src={CloseIcon} alt="close" className="w-6" width="24" height="24" />
+              </button>
             </div>
             <div className="flex text-2xl justify-center  ">
               <span>{i.Title || `Timer ${index}`}</span>
@@ -73,7 +66,10 @@ export default function Sidebar() {
               </div>
             </div>
             <div className="flex justify-center">
-              <button onClick={() => handleLoad(i.id)} className="bg-blue-700  text-black  rounded-lg px-2 py-1 hover:bg-blue-800 transition duration-200">
+              <button
+                onClick={() => handleLoad(i.id)}
+                className="bg-blue-500  text-black font-medium rounded-lg px-2 py-1 hover:bg-blue-600 transition duration-200"
+              >
                 Load
               </button>
             </div>

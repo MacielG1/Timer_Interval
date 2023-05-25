@@ -13,8 +13,10 @@ export default function InputColor({ inputType }) {
       className=" w-7 h-8 mx-2 bg-transparent border-0 outline-none cursor-pointer focus:outline-none"
       type="color"
       name="workColor"
+      aria-label="Color Picker"
       onChange={handleColor}
       value={color}
+      id={inputType}
     />
   );
 }

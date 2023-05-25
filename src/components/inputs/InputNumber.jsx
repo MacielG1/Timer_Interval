@@ -1,15 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useStore from "../../store/useStore";
+import pad from "../../utils/PadNum";
+import generateUniqueId from "../../utils/generateUniqueID";
 
-let n = 0;
-const generateUniqueId = () => {
-  n++;
-  return `id-${n}`;
-};
-
-export default function InputNumber({ label, className, nogap, inputStoreType }) {
+export default function InputNumber({ label, className, nogap, inputStoreType, maxLength = 3, width }) {
   const uniqueId = generateUniqueId();
-
+  const [isFocused, setIsFocused] = useState(false);
   const count = useStore((state) => state[inputStoreType]);
   const increase = useStore((state) => state[`increase${inputStoreType}`]);
   const decrease = useStore((state) => state[`decrease${inputStoreType}`]);
@@ -19,12 +15,14 @@ export default function InputNumber({ label, className, nogap, inputStoreType })
   const timerRef = useRef(null);
 
   function incrementHold() {
+    setIsFocused(true);
     timerRef.current = setTimeout(() => {
       timerRef.current = setInterval(() => increase(), 100);
     }, 100);
   }
 
   function decrementHold() {
+    setIsFocused(true);
     timerRef.current = setTimeout(() => {
       timerRef.current = setInterval(
         // decrement only if count is greater than 0
@@ -35,6 +33,7 @@ export default function InputNumber({ label, className, nogap, inputStoreType })
   }
 
   function timeoutClear() {
+    setIsFocused(false);
     clearInterval(timerRef.current);
   }
 
@@ -50,34 +49,39 @@ export default function InputNumber({ label, className, nogap, inputStoreType })
   }
 
   function handleChange(e) {
-    setCount(e.target.value);
+    let inputValue = e.target.value;
+
+    // stops the input if reaches max length
+    if (inputValue.length <= maxLength) {
+      setCount(inputValue);
+    }
   }
   function handleOnBlur(e) {
     let value = e.target.value;
-    // if the value is zero or lower set it to 1
-    if (value === "" || value == 0) return setCount(1);
-    // remove any leading zeros
+    // if the value is zero or lower set it to 00
+    if (value === "" || value == 0) return setCount("00");
+
+    // else pad and set the value
+    setCount(pad(value));
   }
 
   function handleInvalidInput(e) {
-    // const regex = /^[0-9\b]+$/;
-    // if (!regex.test(e.key) && e.key !== "Backspace") {
-    //   return;
-    // }
+    ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
   }
 
   return (
     <div
       className={`
     ${nogap ? "" : "gap-6"}
-    flex items-center justify-center`}
+    flex items-center justify-center
+    max-[360px]:gap-2
+    `}
     >
       <label
         className={` 
-        ${nogap ? "px-2" : "w-20"}
-          text-center
-         text-2xl  text-gray-200 `}
-        htmlFor={label}
+        ${nogap ? "px-2 max-[360px]:pr-1 " : "w-20 max-[360px]:w-16"}
+          text-center text-2xl  text-gray-200 max-[360px]:text-lg `}
+        htmlFor={label + uniqueId}
       >
         {label}
       </label>
@@ -85,13 +89,13 @@ export default function InputNumber({ label, className, nogap, inputStoreType })
         <input
           className={`
           ${className} 
-          
-          w-12
+          ${width ? width : "w-14 "}
           text-xl text-center  h-12 px-2 bg-neutral-800
           border border-r border-neutral-600 rounded-l-lg 
-          focus:outline-none focus:text-2xl focus:bg-[#313030]
-          focus:border-gray-500`}
-          style={{ backgroundColor: isLoadSavedTimer ? "#2b2a2a" : "#242424" }}
+          focus:outline-none focus:font-medium focus:bg-[#313030]
+          focus:border-gray-500
+          max-[360px]:text-base max-[360px]:w-12 `}
+          style={{ backgroundColor: isLoadSavedTimer ? "#2b2a2a" : "#242424", fontWeight: isFocused ? "500" : null }}
           type="number"
           id={label + uniqueId}
           name={label}

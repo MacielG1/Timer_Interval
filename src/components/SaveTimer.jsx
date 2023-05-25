@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import useStore from "../store/useStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function SaveTimer() {
@@ -44,7 +43,7 @@ export default function SaveTimer() {
   }
 
   return (
-    <div className="mt-7 flex justify-center gap-3 ">
+    <div className="mt-7 flex justify-center gap-4 ">
       <input
         type="text"
         className="placeholder:text-text-gray-300 ml-2 text-white bg-black border-2 border-gray-600 rounded-2xl py-2 px-1 text-center focus:bg-neutral-800  hover:bg-neutral-900 focus:outline-none focus:border-gray-500 focus:placeholder:text-transparent transition duration-300
@@ -57,7 +56,7 @@ export default function SaveTimer() {
       />
       <button
         onClick={handleSaveTimer}
-        className="rounded-2xl px-3 text-center text-blue-600 text-md  sm:text-xl bg-neutral-800 cursor-pointer hover:bg-neutral-700/60 transition duration-300"
+        className="rounded-2xl px-2 text-center text-blue-400 text-md  sm:text-xl bg-neutral-800  cursor-pointer hover:bg-neutral-700/70 transition duration-300"
       >
         Save
       </button>

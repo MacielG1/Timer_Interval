@@ -1,113 +1,68 @@
-// import { useState, useEffect } from "react";
-// import ModalSettings from "./ModalSettings";
-// import Toggle from "./Toggle";
-// import useStore from "../store/useStore";
-
-// let settingSVG = (
-//   <svg width="30" height="30" className="inline-block cursor-pointer" viewBox="0 0 24 24" fill="white">
-//     <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
-//   </svg>
-// );
-
-// export default function SettingsMenu() {
-//   let [isOpen, setIsOpen] = useState(false);
-
-//   let skipLastRest = useStore((state) => state.skipLastRest);
-//   let setSkipLastRest = useStore((state) => state.setSkipLastRest);
-//   let enableBackgroundColors = useStore((state) => state.enableBackgroundColors);
-//   let setEnableBackgroundColors = useStore((state) => state.setEnableBackgroundColors);
-//   let autoRestartonReset = useStore((state) => state.autoRestartonReset);
-//   let setAutoRestartonReset = useStore((state) => state.setAutoRestartonReset);
-
-//   let content = (
-//     <>
-//       <Toggle text="Skip Last Rest" isActive={skipLastRest} toggleActive={setSkipLastRest} />
-//       <Toggle text="Enable Background Colors" isActive={enableBackgroundColors} toggleActive={setEnableBackgroundColors} />
-//       <Toggle text="Auto Start on Reset" isActive={autoRestartonReset} toggleActive={setAutoRestartonReset} />
-//     </>
-//   );
-//   function savedSettingsettings() {
-//     setIsOpen(!isOpen);
-//   }
-
-//   return (
-//     <div className="p-5 px-7 absolute top-0 right-0 z-30">
-//       <div className="relative">
-//         <div onClick={savedSettingsettings}>{settingSVG} </div>
-//         {isOpen && <ModalSettings onClose={savedSettingsettings} content={content} />}
-//       </div>
-//     </div>
-//   );
-// }
 import { useState, useEffect } from "react";
 import ModalSettings from "./ModalSettings";
 import Toggle from "./Toggle";
 import useStore from "../store/useStore";
-
-let settingSVG = (
-  <svg width="30" height="30" className="inline-block cursor-pointer" viewBox="0 0 24 24" fill="white">
-    <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
-  </svg>
-);
+import SettingIcon from "../assets/SettingIcon.svg";
 
 export default function SettingsMenu() {
   let [isOpen, setIsOpen] = useState(false);
 
   let skipLastRest = useStore((state) => state.skipLastRest);
   let setSkipLastRest = useStore((state) => state.setSkipLastRest);
-  let enableBackgroundColors = useStore((state) => state.enableBackgroundColors);
-  let setEnableBackgroundColors = useStore((state) => state.setEnableBackgroundColors);
+  let enableBgColors = useStore((state) => state.enableBackgroundColors);
+  let setenableBgColors = useStore((state) => state.setenableBackgroundColors);
   let autoRestartonReset = useStore((state) => state.autoRestartonReset);
   let setAutoRestartonReset = useStore((state) => state.setAutoRestartonReset);
-  let prepareonEveryRound = useStore((state) => state.prepareonEveryRound);
-  let setPrepareonEveryRound = useStore((state) => state.setPrepareonEveryRound);
+  let prepOnEveryRound = useStore((state) => state.prepareonEveryRound);
+  let setprepOnEveryRound = useStore((state) => state.setPrepareonEveryRound);
+  let enableSounds = useStore((state) => state.enableSounds);
+  let setEnableSounds = useStore((state) => state.setEnableSounds);
 
   useEffect(() => {
-    let setting1 = JSON.parse(localStorage.getItem("skipLastRest"));
-    let setting2 = JSON.parse(localStorage.getItem("enableBackgroundColors"));
-    let setting3 = JSON.parse(localStorage.getItem("autoRestartonReset"));
-    let setting4 = JSON.parse(localStorage.getItem("prepareonEveryRound"));
-    if (setting1 !== null) {
-      setSkipLastRest(setting1);
-    }
-    if (setting2 !== null) {
-      setEnableBackgroundColors(setting2);
-    }
-    if (setting3 !== null) {
-      setAutoRestartonReset(setting3);
-    }
-    if (setting4 !== null) {
-      setPrepareonEveryRound(setting4);
-    }
+    const settings = [
+      { item: "skipLastRest", setState: setSkipLastRest },
+      { item: "enableBgColors", setState: setenableBgColors },
+      { item: "autoRestartonReset", setState: setAutoRestartonReset },
+      { item: "prepOnEveryRound", setState: setprepOnEveryRound },
+      { item: "enableSounds", setState: setEnableSounds },
+    ];
+
+    settings.forEach(({ item, setState }) => {
+      const setting = JSON.parse(localStorage.getItem(item));
+      if (setting !== null) {
+        setState(setting);
+      }
+    });
   }, []);
 
-  function handleSkipLastRest() {
-    localStorage.setItem("skipLastRest", !skipLastRest);
-    setSkipLastRest(!skipLastRest);
-  }
-
-  function handleEnableBackgroundColors() {
-    localStorage.setItem("enableBackgroundColors", !enableBackgroundColors);
-    setEnableBackgroundColors(!enableBackgroundColors);
-  }
-
-  function handleAutoRestartonReset() {
-    localStorage.setItem("autoRestartonReset", !autoRestartonReset);
-    setAutoRestartonReset(!autoRestartonReset);
-  }
-  function handlePrepareonEveryRound() {
-    localStorage.setItem("prepareonEveryRound", !prepareonEveryRound);
-    setPrepareonEveryRound(!prepareonEveryRound);
+  function handleToggleSetting(key, setState, state) {
+    const newValue = !state; // toggle the setting
+    localStorage.setItem(key, JSON.stringify(newValue));
+    setState(newValue);
   }
 
   let content = (
     <>
-      <Toggle text="Skip Last Rest" isActive={skipLastRest} toggleActive={handleSkipLastRest} />
-      <Toggle text="Enable Background Colors" isActive={enableBackgroundColors} toggleActive={handleEnableBackgroundColors} />
-      <Toggle text="Auto Start on Reset" isActive={autoRestartonReset} toggleActive={handleAutoRestartonReset} />
-      <Toggle text="Prepare on Every Round" isActive={prepareonEveryRound} toggleActive={handlePrepareonEveryRound} />
+      <Toggle text="Skip Last Rest" isActive={skipLastRest} toggleActive={() => handleToggleSetting("skipLastRest", setSkipLastRest, skipLastRest)} />
+      <Toggle
+        text="Enable Background Colors"
+        isActive={enableBgColors}
+        toggleActive={() => handleToggleSetting("enableBgColors", setenableBgColors, enableBgColors)}
+      />
+      <Toggle
+        text="Auto Start on Reset"
+        isActive={autoRestartonReset}
+        toggleActive={() => handleToggleSetting("autoRestartonReset", setAutoRestartonReset, autoRestartonReset)}
+      />
+      <Toggle
+        text="Prepare on Every Round"
+        isActive={prepOnEveryRound}
+        toggleActive={() => handleToggleSetting("prepOnEveryRound", setprepOnEveryRound, prepOnEveryRound)}
+      />
+      <Toggle text="Enable Sounds" isActive={enableSounds} toggleActive={() => handleToggleSetting("enableSounds", setEnableSounds, enableSounds)} />
     </>
   );
+
   function savedSettingsettings() {
     setIsOpen(!isOpen);
   }
@@ -115,7 +70,10 @@ export default function SettingsMenu() {
   return (
     <div className="p-5 px-7 absolute top-0 right-0 z-30">
       <div className="relative">
-        <div onClick={savedSettingsettings}>{settingSVG} </div>
+        <div onClick={savedSettingsettings}>
+          <img src={SettingIcon} alt="Settings" className="inline-block cursor-pointer w-8" width="32" height="32" />
+        </div>
+
         {isOpen && <ModalSettings onClose={savedSettingsettings} content={content} />}
       </div>
     </div>

@@ -5,27 +5,27 @@ import convert_Sec_to_MinSec from "../utils/Convert-Sec-to-MinSec";
 
 const roundsSlice = (set) => ({
   Rounds: 2,
-  increaseRounds: () => set((state) => ({ Rounds: Math.min(Number(state.Rounds) + 1, 10000000) })),
+  increaseRounds: () => set((state) => ({ Rounds: Math.min(Number(state.Rounds) + 1, 100000000) })),
   decreaseRounds: () => set((state) => ({ Rounds: Math.max(state.Rounds - 1, 1) })),
   setRounds: (value) => {
-    const newValue = value === "" ? "" : Math.min(Number(value), 10000000);
+    const newValue = value === "" ? "" : Math.max(1, Math.min(Number(value), 100000000));
     set({ Rounds: newValue });
   },
 });
 
 const workSlice = (set, get) => ({
   WorkMinutes: "00",
-  increaseWorkMinutes: () => set((state) => ({ WorkMinutes: padTime(Math.min(Number(state.WorkMinutes) + 1, 60)) })),
+  increaseWorkMinutes: () => set((state) => ({ WorkMinutes: padTime(Number(state.WorkMinutes) + 1) })),
   decreaseWorkMinutes: () => set((state) => ({ WorkMinutes: padTime(Math.max(state.WorkMinutes - 1, 0)) })),
   setWorkMinutes: (value) => {
-    const newValue = value === "" ? "" : Math.min(value, 60); // if the value is greater than 60, set it to 60
+    const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ WorkMinutes: newValue });
   },
   WorkSeconds: "02",
-  increaseWorkSeconds: () => set((state) => ({ WorkSeconds: padTime(Math.min(Number(state.WorkSeconds) + 1, 60)) })),
+  increaseWorkSeconds: () => set((state) => ({ WorkSeconds: padTime(Number(state.WorkSeconds) + 1) })),
   decreaseWorkSeconds: () => set((state) => ({ WorkSeconds: padTime(Math.max(state.WorkSeconds - 1, 0)) })),
-  setWorkSeconds: (value) => {
-    const newValue = value === "" ? "" : Math.min(value, 60); // if the value is greater than 60, set it to 60
+  setWorkSeconds: (value, minAmount) => {
+    const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ WorkSeconds: newValue });
   },
   WorkColor: "#00993B",
@@ -39,17 +39,17 @@ const workSlice = (set, get) => ({
 });
 const restSlice = (set, get) => ({
   RestMinutes: "00",
-  increaseRestMinutes: () => set((state) => ({ RestMinutes: padTime(Math.min(Number(state.RestMinutes) + 1, 60)) })),
+  increaseRestMinutes: () => set((state) => ({ RestMinutes: padTime(Number(state.RestMinutes) + 1) })),
   decreaseRestMinutes: () => set((state) => ({ RestMinutes: padTime(Math.max(state.RestMinutes - 1, 0)) })),
   setRestMinutes: (value) => {
-    const newValue = value === "" ? "" : Math.min(value, 60); // if the value is greater than 60, set it to 60
+    const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ RestMinutes: newValue });
   },
   RestSeconds: "02",
-  increaseRestSeconds: () => set((state) => ({ RestSeconds: padTime(Math.min(Number(state.RestSeconds) + 1, 60)) })),
+  increaseRestSeconds: () => set((state) => ({ RestSeconds: padTime(Number(state.RestSeconds) + 1) })),
   decreaseRestSeconds: () => set((state) => ({ RestSeconds: padTime(Math.max(state.RestSeconds - 1, 0)) })),
   setRestSeconds: (value) => {
-    const newValue = value === "" ? "" : Math.min(value, 60); // if the value is greater than 60, set it to 60
+    const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ RestSeconds: newValue });
   },
 
@@ -62,17 +62,17 @@ const restSlice = (set, get) => ({
 
 const prepareSlice = (set, get) => ({
   PrepareMinutes: "00",
-  increasePrepareMinutes: () => set((state) => ({ PrepareMinutes: padTime(Math.min(Number(state.PrepareMinutes) + 1, 60)) })),
+  increasePrepareMinutes: () => set((state) => ({ PrepareMinutes: padTime(Number(state.PrepareMinutes) + 1) })),
   decreasePrepareMinutes: () => set((state) => ({ PrepareMinutes: padTime(Math.max(state.PrepareMinutes - 1, 0)) })),
   setPrepareMinutes: (value) => {
-    const newValue = value === "" ? "" : Math.min(value, 60); // if the value is greater than 60, set it to 60
+    const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ PrepareMinutes: newValue });
   },
   PrepareSeconds: "02",
-  increasePrepareSeconds: () => set((state) => ({ PrepareSeconds: padTime(Math.min(Number(state.PrepareSeconds) + 1, 60)) })),
+  increasePrepareSeconds: () => set((state) => ({ PrepareSeconds: padTime(Number(state.PrepareSeconds) + 1) })),
   decreasePrepareSeconds: () => set((state) => ({ PrepareSeconds: padTime(Math.max(state.PrepareSeconds - 1, 0)) })),
   setPrepareSeconds: (value) => {
-    const newValue = value === "" ? "" : Math.min(value, 60); // if the value is greater than 60, set it to 60
+    const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ PrepareSeconds: newValue });
   },
 
@@ -187,39 +187,21 @@ const storageSlice = (set) => ({
   setSavedWorkouts: (value) => set({ savedWorkouts: value }),
 });
 
-// const savedSettingsSlice = (set) => ({
-//   skipLastRest: true,
-//   setSkipLastRest: () => set({ skipLastRest: !get().skipLastRest }),
-//   enableBackgroundColors: false,
-//   setEnableBackgroundColors: () => set({ enableBackgroundColors: !get().enableBackgroundColors }),
-//   autoRestartonReset: false,
-//   setAutoRestartonReset: () => set({ autoRestartonReset: !get().autoRestartonReset }),
-//    prepareonEveryRound: false,
-//   setPrepareonEveryRound: () => set({ prepareonEveryRound: !get().prepareonEveryRound }),
-// });
-
 const savedSettingsSlice = (set, get) => ({
   skipLastRest: true,
-  setSkipLastRest: (value) => {
-    set({ skipLastRest: value });
-    // localStorage.setItem("skipLastRest", get().skipLastRest);
-  },
+  setSkipLastRest: (value) => set({ skipLastRest: value }),
+
   enableBackgroundColors: false,
-  setEnableBackgroundColors: (value) => {
-    set({ enableBackgroundColors: value });
-    // localStorage.setItem("enableBackgroundColors", get().enableBackgroundColors);
-  },
+  setEnableBackgroundColors: (value) => set({ enableBackgroundColors: value }),
+
   autoRestartonReset: false,
-  setAutoRestartonReset: (value) => {
-    set({ autoRestartonReset: value });
-    // localStorage.setItem("autoRestartonReset", get().autoRestartonReset);
-  },
+  setAutoRestartonReset: (value) => set({ autoRestartonReset: value }),
 
   prepareonEveryRound: false,
-  setPrepareonEveryRound: (value) => {
-    set({ prepareonEveryRound: value });
-    // localStorage.setItem("prepareonEveryRound", get().prepareonEveryRound);
-  },
+  setPrepareonEveryRound: (value) => set({ prepareonEveryRound: value }),
+
+  enableSounds: false,
+  setEnableSounds: (value) => set({ enableSounds: value }),
 });
 
 const useStore = create((...args) => ({

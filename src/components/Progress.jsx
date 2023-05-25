@@ -106,27 +106,17 @@ export default function Progress() {
   }
 
   return (
-    <div className="mt-1 2xl:mt-10  flex justify-center items-center text-5xl gap-4 px-4 ">
+    <div className="mt-1 2xl:mt-10  flex justify-center items-center text-5xl gap-4 sm:px-4 ">
       <button
         onClick={handlePrev}
         type="button"
         className="
-       rounded-lg px-3 py-2 text-gray-300 hover:scale-110
+       rounded-lg  sm:px-3  py-2 text-gray-300 hover:scale-110
         transition duration-300"
         id="previousBtn"
       >
         <span>◀</span>
       </button>
-      {/* <progress
-        id="progressBar"
-        className="h-8 min-w-[10rem] w-2/3 rounded-2xl  
-      [&::-webkit-progress-bar]:rounded-lg 
-      [&::-webkit-progress-value]:rounded-lg  
-      [&::-webkit-progress-bar]:bg-gray-500 
-      [&::-moz-progress-bar]:bg-gray-500"
-        value={progressBarValue}
-        max={progressBarMax}
-      ></progress> */}
 
       <div className="w-full h-9 bg-neutral-500 rounded-xl overflow-hidden  ">
         <div className="h-9  rounded-xl " style={{ width: `${(progressBarValue / progressBarMax) * 100 || 0}%`, backgroundColor: currentProgressColor }}></div>
@@ -136,7 +126,7 @@ export default function Progress() {
         onClick={handleNext}
         type="button"
         className="
-      rounded-lg px-3 py-2 text-gray-300 hover:scale-110
+      rounded-lg sm:px-3 py-2 text-gray-300 hover:scale-110
        transition duration-300"
         id="nextBtn"
       >

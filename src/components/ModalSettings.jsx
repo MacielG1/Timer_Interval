@@ -8,8 +8,12 @@ export default function ModalSettings({ onClose, content }) {
   let modal = (
     <>
       <Backdrop onClick={onClose} />
-      {/* passing the function to the Backdrop  */}
-      <div className="fixed top-14 right-10 w-fit flex flex-col p-4 gap-2 mt-1 bg-zinc-700 rounded-lg shadow-md z-30 ">{content}</div>
+      <div
+        className="fixed top-14 right-10 w-fit flex flex-col p-4 gap-2 mt-1 bg-zinc-700 rounded-lg shadow-md z-30 
+      max-[350px]:right-0 max-[350px]:p-1 max-[350px]:text-base max-[350px]:max-w-  "
+      >
+        {content}
+      </div>
     </>
   );
   return createPortal(modal, document.getElementById("modal-root"));
