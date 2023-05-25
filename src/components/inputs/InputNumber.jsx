@@ -17,7 +17,7 @@ export default function InputNumber({ label, className, nogap, inputStoreType, m
   function incrementHold() {
     setIsFocused(true);
     timerRef.current = setTimeout(() => {
-      timerRef.current = setInterval(() => increase(), 100);
+      timerRef.current = setInterval(() => increase(), 80);
     }, 100);
   }
 
@@ -27,7 +27,7 @@ export default function InputNumber({ label, className, nogap, inputStoreType, m
       timerRef.current = setInterval(
         // decrement only if count is greater than 0
         () => decrease(),
-        100
+        80
       );
     }, 100);
   }

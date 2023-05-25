@@ -17,6 +17,8 @@ export default function SettingsMenu() {
   let setprepOnEveryRound = useStore((state) => state.setPrepareonEveryRound);
   let enableSounds = useStore((state) => state.enableSounds);
   let setEnableSounds = useStore((state) => state.setEnableSounds);
+  let enableVibrate = useStore((state) => state.enableVibrate);
+  let setEnableVibrate = useStore((state) => state.setEnableVibrate);
 
   useEffect(() => {
     const settings = [
@@ -25,6 +27,7 @@ export default function SettingsMenu() {
       { item: "autoRestartonReset", setState: setAutoRestartonReset },
       { item: "prepOnEveryRound", setState: setprepOnEveryRound },
       { item: "enableSounds", setState: setEnableSounds },
+      { item: "enableVibrate", setState: setEnableVibrate },
     ];
 
     settings.forEach(({ item, setState }) => {
@@ -60,6 +63,7 @@ export default function SettingsMenu() {
         toggleActive={() => handleToggleSetting("prepOnEveryRound", setprepOnEveryRound, prepOnEveryRound)}
       />
       <Toggle text="Enable Sounds" isActive={enableSounds} toggleActive={() => handleToggleSetting("enableSounds", setEnableSounds, enableSounds)} />
+      <Toggle text="Enable Vibrate" isActive={enableVibrate} toggleActive={() => handleToggleSetting("enableVibrate", setEnableVibrate, enableVibrate)} />
     </>
   );
 

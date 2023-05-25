@@ -18,7 +18,6 @@ export default function TimerApp() {
     >
       <TimerDisplay />
 
-      {/* Progress Bar and Arrows  */}
       <Progress />
 
       <MenuButtons />

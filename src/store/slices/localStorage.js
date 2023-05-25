@@ -17,6 +17,9 @@ const storageSlice = (set) => ({
 
   enableSounds: false,
   setEnableSounds: (value) => set({ enableSounds: value }),
+
+  enableVibrate: false,
+  setEnableVibrate: (value) => set({ enableVibrate: value }),
 });
 
 export default storageSlice;

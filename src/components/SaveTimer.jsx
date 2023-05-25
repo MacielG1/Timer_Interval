@@ -14,6 +14,7 @@ export default function SaveTimer() {
   let restColor = useStore((state) => state.RestColor);
   let prepMin = useStore((state) => state.PrepareMinutes);
   let prepSec = useStore((state) => state.PrepareSeconds);
+  let prepColor = useStore((state) => state.PrepColor);
 
   let setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
 
@@ -36,6 +37,7 @@ export default function SaveTimer() {
       RestColor: restColor,
       PrepareMinutes: prepMin,
       PrepareSeconds: prepSec,
+      PrepColor: prepColor,
     };
 
     localStorage.setItem("savedTimer", JSON.stringify([...timerStorage, data]));

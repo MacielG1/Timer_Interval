@@ -15,14 +15,13 @@ export default function Progress() {
   const setWhichInterval = useStore((state) => state.setWhichInterval);
 
   const isPaused = useStore((state) => state.isPaused);
+  const totalRounds = useStore((state) => state.Rounds);
 
   const time = useStore((state) => state.time);
   const setTime = useStore((state) => state.setTime);
 
   const timer = useStore((state) => state.timer);
   const resetTimer = useStore((state) => state.resetTimer);
-
-  const totalRounds = useStore((state) => state.Rounds);
 
   const workTime = useStore((state) => state.workTime);
   const restTime = useStore((state) => state.restTime);
