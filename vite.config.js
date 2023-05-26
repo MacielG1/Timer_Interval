@@ -17,5 +17,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/Timer_Interval/",
+  base: "./",
 });

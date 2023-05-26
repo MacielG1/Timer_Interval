@@ -43,6 +43,7 @@ export default function SettingsMenu() {
     localStorage.setItem(key, JSON.stringify(newValue));
     setState(newValue);
   }
+  const isVibrationSupported = "vibrate" in navigator;
 
   let content = (
     <>
@@ -63,7 +64,9 @@ export default function SettingsMenu() {
         toggleActive={() => handleToggleSetting("prepOnEveryRound", setprepOnEveryRound, prepOnEveryRound)}
       />
       <Toggle text="Enable Sounds" isActive={enableSounds} toggleActive={() => handleToggleSetting("enableSounds", setEnableSounds, enableSounds)} />
-      <Toggle text="Enable Vibrate" isActive={enableVibrate} toggleActive={() => handleToggleSetting("enableVibrate", setEnableVibrate, enableVibrate)} />
+      {isVibrationSupported && (
+        <Toggle text="Enable Vibrate" isActive={enableVibrate} toggleActive={() => handleToggleSetting("enableVibrate", setEnableVibrate, enableVibrate)} />
+      )}
     </>
   );
 

@@ -54,7 +54,7 @@ export default function MenuButtons() {
       <Button
         onClick={handleStart}
         text="Start"
-        className="bg-green-600 hover:bg-green-700 disabled:bg-green-800 disabled:text-neutral-900"
+        className="bg-green-600 hover:bg-green-700 disabled:bg-green-700/90 disabled:text-neutral-900"
         disabled={timer && !isPaused}
       />
       <Button onClick={handlePause} text="Pause" className="bg-rose-700 hover:bg-rose-800" />

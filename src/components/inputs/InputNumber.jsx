@@ -4,7 +4,9 @@ import useStore from "../../store/useStore";
 import pad from "../../utils/PadNum";
 import generateUniqueId from "../../utils/generateUniqueID";
 
-export default function InputNumber({ label, className, nogap, inputStoreType, maxLength = 3, width }) {
+export default function InputNumber(props) {
+  let { label, className, nogap, inputStoreType, maxLength = 3, width } = props;
+
   const uniqueId = generateUniqueId();
   const [isFocused, setIsFocused] = useState(false);
   const count = useStore((state) => state[inputStoreType]);
@@ -75,13 +77,13 @@ export default function InputNumber({ label, className, nogap, inputStoreType, m
       className={`
     ${nogap ? "" : "gap-6"}
     flex items-center justify-center
-    max-[360px]:gap-2
+    max-[360px]:gap-1
     `}
     >
       <label
         className={` 
         ${nogap ? "px-2 max-[360px]:pr-1 " : "w-20 max-[360px]:w-16"}
-          text-center text-2xl  text-gray-200 max-[360px]:text-lg `}
+          text-center text-2xl  text-gray-200 max-[360px]:text-[5.0vw] max-[290px]:text-base`}
         htmlFor={label + uniqueId}
       >
         {label}
@@ -95,7 +97,7 @@ export default function InputNumber({ label, className, nogap, inputStoreType, m
           border border-r border-neutral-600 rounded-l-lg 
           focus:outline-none focus:font-medium focus:bg-[#313030]
           focus:border-gray-500
-          max-[360px]:text-base max-[360px]:w-12 `}
+          max-[360px]:text-base max-[300px]:w-[18vw] min-w-[2.5rem]`}
           style={{ backgroundColor: isLoadSavedTimer ? "#2b2a2a" : "#242424", fontWeight: isFocused ? "500" : null }}
           type="number"
           id={label + uniqueId}

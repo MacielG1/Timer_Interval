@@ -11,7 +11,7 @@ export default function InputColor({ inputType }) {
 
   return (
     <input
-      className=" w-7 h-8 mx-2 bg-transparent border-0 outline-none cursor-pointer focus:outline-none"
+      className=" w-7 h-8 mx-3 max-[360px]:mx-1 bg-transparent border-0 outline-none cursor-pointer focus:outline-none"
       type="color"
       name="workColor"
       aria-label="Color Picker"
