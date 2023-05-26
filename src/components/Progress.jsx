@@ -110,13 +110,14 @@ export default function Progress() {
         type="button"
         className="
        rounded-lg  sm:px-3  py-2 text-gray-300 hover:scale-110
-        transition duration-300"
+        transition duration-300 "
         id="previousBtn"
+        style={{ visibility: timer ? "visible" : "hidden" }}
       >
         <span>◀</span>
       </button>
 
-      <div className="w-full h-9 bg-neutral-500 rounded-xl overflow-hidden  ">
+      <div className="w-full max-w-lg h-9 bg-neutral-500 rounded-xl overflow-hidden  ">
         <div className="h-9  rounded-xl " style={{ width: `${(progressBarValue / progressBarMax) * 100 || 0}%`, backgroundColor: currentProgressColor }}></div>
       </div>
 
@@ -127,6 +128,7 @@ export default function Progress() {
       rounded-lg sm:px-3 py-2 text-gray-300 hover:scale-110
        transition duration-300"
         id="nextBtn"
+        style={{ visibility: timer ? "visible" : "hidden" }}
       >
         <span>▶</span>
       </button>
