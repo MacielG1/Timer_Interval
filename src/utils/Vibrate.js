@@ -1,5 +1,10 @@
+export function isMobileDevice() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  return isMobile;
+}
+
 export default async function vibrate() {
-  if ("vibrate" in navigator) {
-    navigator.vibrate([200]);
+  if (navigator.vibrate) {
+    navigator.vibrate(200);
   }
 }

@@ -132,7 +132,7 @@ export default function CenterMenu() {
 
   return (
     <>
-      <div className=" mt-6 2xl:mt-8 flex flex-col justify-center mx-auto gap-2 2xl:gap-3 ">
+      <div className=" mt-6 2xl:mt-8 flex flex-col justify-center min-[350px]:mx-auto gap-2 2xl:gap-3 ">
         <div className="flex ">
           {/* Rounds */}
           <InputNumber label="Rounds" className="w-[7rem] xs:w-[9.8rem] max-w-[9.8rem]" inputStoreType="Rounds" maxLength={8} />

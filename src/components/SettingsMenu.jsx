@@ -3,7 +3,7 @@ import ModalSettings from "./ModalSettings";
 import Toggle from "./Toggle";
 import useStore from "../store/useStore";
 import SettingIcon from "../assets/SettingIcon.svg";
-
+import { isMobileDevice } from "../utils/Vibrate";
 export default function SettingsMenu() {
   let [isOpen, setIsOpen] = useState(false);
 
@@ -43,7 +43,8 @@ export default function SettingsMenu() {
     localStorage.setItem(key, JSON.stringify(newValue));
     setState(newValue);
   }
-  const isVibrationSupported = "vibrate" in navigator;
+
+  let isOnMobileDevice = isMobileDevice();
 
   let content = (
     <>
@@ -64,8 +65,9 @@ export default function SettingsMenu() {
         toggleActive={() => handleToggleSetting("prepOnEveryRound", setprepOnEveryRound, prepOnEveryRound)}
       />
       <Toggle text="Enable Sounds" isActive={enableSounds} toggleActive={() => handleToggleSetting("enableSounds", setEnableSounds, enableSounds)} />
-      {isVibrationSupported && (
-        <Toggle text="Enable Vibrate" isActive={enableVibrate} toggleActive={() => handleToggleSetting("enableVibrate", setEnableVibrate, enableVibrate)} />
+
+      {isOnMobileDevice && (
+        <Toggle text="Enable Vibration" isActive={enableVibrate} toggleActive={() => handleToggleSetting("enableVibrate", setEnableVibrate, enableVibrate)} />
       )}
     </>
   );
