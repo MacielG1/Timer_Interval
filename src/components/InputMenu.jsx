@@ -9,7 +9,7 @@ import sound1 from "../assets/sounds/sound1.mp3";
 import sound2 from "../assets/sounds/sound2.mp3";
 
 export default function CenterMenu() {
-  const totalRounds = useStore((state) => state.Rounds);
+  const totalRounds = useStore((state) => state.roundsSelected);
   const currentRound = useStore((state) => state.currentRound);
   const currentRoundIncrease = useStore((state) => state.currentRoundIncrease);
 
@@ -51,7 +51,7 @@ export default function CenterMenu() {
   useEffect(() => {
     if (timer) {
       if (workoutFullTime === "00:00") {
-        timer.stop();
+        timer?.stop();
         resetTimer();
         return;
       }
@@ -105,13 +105,13 @@ export default function CenterMenu() {
         setTime(0);
 
         if (currentRound === totalRounds && skipLastRest) {
-          timer.stop();
+          timer?.stop();
           resetTimer();
           return;
         }
       } else if (whichInterval === "rest" && time > restTime) {
         if (currentRound === totalRounds) {
-          timer.stop();
+          timer?.stop();
           resetTimer();
           return;
         } else {
@@ -127,7 +127,7 @@ export default function CenterMenu() {
         increaseTotalTimePassed();
       }
       setProgressBarValue(time);
-    }
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
   return (

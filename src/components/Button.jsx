@@ -1,8 +1,12 @@
-export default function Button({ text, onClick, className, ...props }) {
+import PropTypes from "prop-types";
+
+export default function Button(props) {
+  const { text, onClick, className, ...restProps } = props;
+
   return (
     <button
       onClick={onClick}
-      {...props}
+      {...restProps}
       className={`
       ${className}
       text-xl sm:text-3xl text-black
@@ -16,3 +20,9 @@ export default function Button({ text, onClick, className, ...props }) {
     </button>
   );
 }
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+};

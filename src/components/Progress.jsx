@@ -15,7 +15,7 @@ export default function Progress() {
   const setWhichInterval = useStore((state) => state.setWhichInterval);
 
   const isPaused = useStore((state) => state.isPaused);
-  const totalRounds = useStore((state) => state.Rounds);
+  const totalRounds = useStore((state) => state.roundsSelected);
 
   const time = useStore((state) => state.time);
   const setTime = useStore((state) => state.setTime);
@@ -99,7 +99,6 @@ export default function Progress() {
             }
           }
         }
-      } else {
       }
     }
   }

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import useStore from "../../store/useStore";
 import pad from "../../utils/PadNum";
@@ -129,3 +130,12 @@ export default function InputNumber({ label, className, nogap, inputStoreType, m
     </div>
   );
 }
+
+InputNumber.propTypes = {
+  label: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  nogap: PropTypes.bool,
+  inputStoreType: PropTypes.string.isRequired,
+  maxLength: PropTypes.number,
+  width: PropTypes.string,
+};

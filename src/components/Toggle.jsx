@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function Toggle({ text, isActive, toggleActive }) {
   return (
     <div className="flex relative mx-2 w-max max-[350px]:w-fit max-[300px]:border-b max-[300px]:border-neutral-800 max-[350px]:gap-4">
@@ -9,3 +11,9 @@ export default function Toggle({ text, isActive, toggleActive }) {
     </div>
   );
 }
+
+Toggle.propTypes = {
+  text: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  toggleActive: PropTypes.func.isRequired,
+};

@@ -1,6 +1,11 @@
 import convert_MinSec_to_Sec from "../../utils/Convert-MinSec-to-Sec";
 
 const currentTimerOptionsSlice = (set, get) => ({
+  roundsSelected: 1,
+  setRoundsSelected: () => {
+    set({ roundsSelected: get().Rounds });
+  },
+
   workTime: "00:00",
   setWorkTime: () => {
     let time = convert_MinSec_to_Sec(`${get().WorkMinutes}:${get().WorkSeconds}`);

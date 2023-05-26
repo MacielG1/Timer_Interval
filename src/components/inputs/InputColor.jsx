@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import useStore from "../../store/useStore";
 
 export default function InputColor({ inputType }) {
@@ -20,3 +21,7 @@ export default function InputColor({ inputType }) {
     />
   );
 }
+
+InputColor.propTypes = {
+  inputType: PropTypes.string.isRequired,
+};

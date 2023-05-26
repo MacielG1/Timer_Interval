@@ -20,7 +20,8 @@ export default function SaveTimer() {
 
   useEffect(() => {
     let timerStorage = JSON.parse(localStorage.getItem("savedTimer")) || [];
-    setSavedWorkouts(timerStorage);
+
+    setSavedWorkouts(timerStorage); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSaveTimer() {

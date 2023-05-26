@@ -10,7 +10,7 @@ export default function SettingsMenu() {
   let skipLastRest = useStore((state) => state.skipLastRest);
   let setSkipLastRest = useStore((state) => state.setSkipLastRest);
   let enableBgColors = useStore((state) => state.enableBackgroundColors);
-  let setenableBgColors = useStore((state) => state.setenableBackgroundColors);
+  let setenableBgColors = useStore((state) => state.setEnableBackgroundColors);
   let autoRestartonReset = useStore((state) => state.autoRestartonReset);
   let setAutoRestartonReset = useStore((state) => state.setAutoRestartonReset);
   let prepOnEveryRound = useStore((state) => state.prepareonEveryRound);
@@ -35,7 +35,7 @@ export default function SettingsMenu() {
       if (setting !== null) {
         setState(setting);
       }
-    });
+    }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleToggleSetting(key, setState, state) {

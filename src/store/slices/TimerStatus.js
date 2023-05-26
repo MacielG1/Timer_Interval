@@ -55,6 +55,7 @@ const timerStatusSlice = (set, get) => ({
       removeUIBorders: false,
       mainTimerBorder: "#787777",
       workoutFullTime: "00:00",
+      timer: null,
     });
   },
   clearInputFields: () => {

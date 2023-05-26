@@ -6,6 +6,7 @@ export default function MenuButtons() {
   const setWorkTime = useStore((state) => state.setWorkTime);
   const setRestTime = useStore((state) => state.setRestTime);
   const setPrepTime = useStore((state) => state.setPrepTime);
+  const setRoundsSelected = useStore((state) => state.setRoundsSelected);
   const setTimer = useStore((state) => state.setTimer);
   const timeIncrease = useStore((state) => state.timeIncrease);
   const updateWorkoutFullTime = useStore((state) => state.getWorkoutFullTime);
@@ -18,11 +19,13 @@ export default function MenuButtons() {
   function handleStart() {
     if (isPaused) setIsPaused(false);
 
-    setWorkTime();
-    setRestTime();
-    setPrepTime();
-    updateWorkoutFullTime();
-
+    if (!timer) {
+      setRoundsSelected();
+      setWorkTime();
+      setRestTime();
+      setPrepTime();
+      updateWorkoutFullTime();
+    }
     setTimer(
       new Timer(1000, () => {
         timeIncrease();
@@ -32,15 +35,13 @@ export default function MenuButtons() {
 
   function handlePause() {
     setIsPaused(true);
-    if (timer) {
-      timer.stop();
-    }
+
+    timer?.stop();
   }
 
   function handleReset() {
-    if (timer) {
-      timer.stop();
-    }
+    timer?.stop();
+
     resetTimer();
 
     if (autoRestartonReset) {

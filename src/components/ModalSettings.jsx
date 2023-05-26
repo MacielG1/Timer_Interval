@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 
 export function Backdrop({ onClick }) {
@@ -18,3 +19,12 @@ export default function ModalSettings({ onClose, content }) {
   );
   return createPortal(modal, document.getElementById("modal-root"));
 }
+
+Backdrop.propTypes = {
+  onClick: PropTypes.func,
+};
+
+ModalSettings.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  content: PropTypes.element.isRequired,
+};
