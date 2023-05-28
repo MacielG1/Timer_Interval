@@ -1,6 +1,7 @@
 import useStore from "../store/useStore";
 import Timer from "../utils/Timer";
 import Button from "./Button";
+import { useEffect } from "react";
 
 export default function MenuButtons() {
   const setWorkTime = useStore((state) => state.setWorkTime);

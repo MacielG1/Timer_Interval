@@ -3,6 +3,7 @@ import convert_Sec_to_MinSec from "../../utils/Convert-Sec-to-MinSec";
 const timerStatusSlice = (set, get) => ({
   timer: null,
   setTimer: (value) => set({ timer: value }),
+
   time: 0,
   setTime: (value) => set({ time: value }),
   timeIncrease: () => set((state) => ({ time: state.time + 1 })),

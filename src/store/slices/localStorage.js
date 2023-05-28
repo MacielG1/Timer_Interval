@@ -20,6 +20,11 @@ const storageSlice = (set) => ({
 
   enableVibrate: false,
   setEnableVibrate: (value) => set({ enableVibrate: value }),
+
+  // language
+  // preferredLanguage: navigator.language.slice(0, 2),
+  preferredLanguage: "en",
+  setPreferredLanguage: (value) => set({ preferredLanguage: value }),
 });
 
 export default storageSlice;

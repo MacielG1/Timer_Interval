@@ -15,7 +15,6 @@ export default function SaveTimer() {
   let prepMin = useStore((state) => state.PrepareMinutes);
   let prepSec = useStore((state) => state.PrepareSeconds);
   let prepColor = useStore((state) => state.PrepColor);
-
   let setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
 
   useEffect(() => {
