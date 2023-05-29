@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ModalSettings from "./ModalSettings";
 import Toggle from "./ToggleInput";
 import useStore from "../store/useStore";
-import SettingIcon from "../assets/SettingIcon.svg";
+import SettingIcon from "../assets/icons/SettingIcon.svg";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { isMobileDevice } from "../utils/Vibrate";
 

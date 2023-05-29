@@ -51,6 +51,11 @@ export default function SaveTimer() {
       pt: "Nome do Timer",
       fr: "Nom du minuteur",
     },
+    save: {
+      en: "Save",
+      pt: "Salvar",
+      fr: "Enregistrer",
+    },
   };
 
   return (
@@ -69,7 +74,7 @@ export default function SaveTimer() {
         onClick={handleSaveTimer}
         className="rounded-2xl px-2 text-center text-blue-400 text-md  sm:text-xl bg-neutral-800  cursor-pointer hover:bg-neutral-700/70 transition duration-300"
       >
-        Save
+        {lang.save[preferredLanguage]}
       </button>
     </div>
   );

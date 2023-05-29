@@ -1,5 +1,5 @@
 import useStore from "../store/useStore";
-import CloseIcon from "../assets/CloseIcon.svg";
+import CloseIcon from "../assets/icons/CloseIcon.svg";
 
 export default function Sidebar() {
   const removeBorders = useStore((state) => state.removeUIBorders);

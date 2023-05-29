@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import useStore from "../store/useStore";
 import Timer from "../utils/Timer";
 import Button from "./Button";
@@ -79,8 +78,6 @@ export default function MenuButtons() {
     <div className="flex gap-1 xs:gap-2 sm:gap-4 mt-2 sm:mt-4 2xl:mt-10 justify-center items-center">
       <Button
         onClick={handleStart}
-        // text="Start"
-        // text={timer && isPaused ? "Resume" : "Start"}
         text={timer && isPaused ? lang.resumeButton[preferredLanguage] : lang.startButton[preferredLanguage]}
         className="bg-green-600 hover:bg-green-700 disabled:bg-green-700/90 disabled:text-neutral-900"
         disabled={timer && !isPaused}

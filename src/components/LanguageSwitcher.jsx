@@ -1,8 +1,8 @@
 import useStore from "../store/useStore";
-import arrowDownIcon from "../assets/arrowDown.svg";
-import brIcon from "../assets/br.svg";
-import ukIcon from "../assets/uk.svg";
-import frIcon from "../assets/fr.svg";
+import arrowDownIcon from "../assets/icons/arrowDown.svg";
+import brIcon from "../assets/flags/br.svg";
+import ukIcon from "../assets/flags/uk.svg";
+import frIcon from "../assets/flags/fr.svg";
 
 const countries = [
   { name: "en", flag: ukIcon },
