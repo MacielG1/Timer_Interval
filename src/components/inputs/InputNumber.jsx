@@ -13,7 +13,7 @@ export default function InputNumber(props) {
   const increase = useStore((state) => state[`increase${inputStoreType}`]);
   const decrease = useStore((state) => state[`decrease${inputStoreType}`]);
   const setCount = useStore((state) => state[`set${inputStoreType}`]);
-  const isLoadSavedTimer = useStore((state) => state.isLoadSavedTimer);
+  const isLoadingSavedTimer = useStore((state) => state.isLoadingSavedTimer);
 
   const timerRef = useRef(null);
 
@@ -75,15 +75,15 @@ export default function InputNumber(props) {
   return (
     <div
       className={`
-    ${nogap ? "" : "gap-6"}
+    ${nogap ? "" : "xs:gap-3  lg:gap-4"}
     flex items-center justify-center
     max-[360px]:gap-1
     `}
     >
       <label
         className={` 
-        ${nogap ? "px-2 max-[360px]:pr-1 " : "w-20 max-[360px]:w-16"}
-          text-center text-2xl  text-gray-200 max-[360px]:text-[5.0vw] max-[290px]:text-base`}
+        ${nogap ? "px-2 max-[360px]:pr-1 " : "w-24 max-[360px]:w-16 "}
+          text-center   text-gray-200  text-sm xs:text-base  sm:text-lg lg:text-xl`}
         htmlFor={label + uniqueId}
       >
         {label}
@@ -98,7 +98,7 @@ export default function InputNumber(props) {
           focus:outline-none focus:font-medium focus:bg-[#313030]
           focus:border-gray-500
           max-[360px]:text-base max-[300px]:w-[18vw] min-w-[2.5rem]`}
-          style={{ backgroundColor: isLoadSavedTimer ? "#2b2a2a" : "#242424", fontWeight: isFocused ? "500" : null }}
+          style={{ backgroundColor: isLoadingSavedTimer ? "#2b2a2a" : "#242424", fontWeight: isFocused ? "500" : null }}
           type="number"
           id={label + uniqueId}
           name={label}

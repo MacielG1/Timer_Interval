@@ -7,7 +7,7 @@ export default function Sidebar() {
 
   const savedWorkouts = useStore((state) => state.savedWorkouts);
   const setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
-  const setIsLoadSavedTimer = useStore((state) => state.setIsLoadSavedTimer);
+  const SetIsLoadingSavedTimer = useStore((state) => state.SetIsLoadingSavedTimer);
 
   function handleDelete(id) {
     let timers = savedWorkouts.filter((i) => i.id !== id);
@@ -31,9 +31,9 @@ export default function Sidebar() {
     });
 
     // adds an effect to the inputs when the btn is clicked
-    setIsLoadSavedTimer(true);
+    SetIsLoadingSavedTimer(true);
     setTimeout(() => {
-      setIsLoadSavedTimer(false);
+      SetIsLoadingSavedTimer(false);
     }, 400);
   }
 

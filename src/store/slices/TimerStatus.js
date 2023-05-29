@@ -3,6 +3,9 @@ import convert_Sec_to_MinSec from "../../utils/Convert-Sec-to-MinSec";
 const timerStatusSlice = (set, get) => ({
   timer: null,
   setTimer: (value) => set({ timer: value }),
+  getTimer: () => {
+    return get().timer;
+  },
 
   time: 0,
   setTime: (value) => set({ time: value }),
@@ -15,12 +18,11 @@ const timerStatusSlice = (set, get) => ({
   setCurrentRound: (value) => set({ currentRound: value }),
   currentRoundIncrease: () => set((state) => ({ currentRound: state.currentRound + 1 })),
 
-  skipLastRest: false,
-  setSkipLastRest: (value) => set({ skipLastRest: value }),
   isPaused: true,
   setIsPaused: (value) => set({ isPaused: value }),
 
   workoutFullTime: "00:00",
+  setWorkoutFullTime: (value) => set({ workoutFullTime: value }),
   getWorkoutFullTime: () => {
     let restRounds = get().skipLastRest ? get().Rounds - 1 : get().Rounds;
     let rounds = get().Rounds;
@@ -40,8 +42,8 @@ const timerStatusSlice = (set, get) => ({
   mainTimerBorder: "#787777",
   setMainTimerBorder: (value) => set({ mainTimerBorder: value }),
 
-  isLoadSavedTimer: false,
-  setIsLoadSavedTimer: (value) => set({ isLoadSavedTimer: value }),
+  isLoadingSavedTimer: false,
+  SetIsLoadingSavedTimer: (value) => set({ isLoadingSavedTimer: value }),
 
   resetTimer: () => {
     set({
@@ -59,6 +61,7 @@ const timerStatusSlice = (set, get) => ({
       timer: null,
     });
   },
+
   clearInputFields: () => {
     set({
       Rounds: 1,

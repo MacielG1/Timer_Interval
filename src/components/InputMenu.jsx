@@ -48,6 +48,8 @@ export default function CenterMenu() {
   const enableSounds = useStore((state) => state.enableSounds);
   const enableVibrate = useStore((state) => state.enableVibrate);
 
+  const preferredLanguage = useStore((state) => state.preferredLanguage);
+
   useEffect(() => {
     if (timer) {
       if (workoutFullTime === "00:00") {
@@ -130,32 +132,55 @@ export default function CenterMenu() {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
+  let lang = {
+    rounds: {
+      en: "Rounds",
+      pt: "Rodadas",
+      fr: "Tours",
+    },
+    work: {
+      en: "Work",
+      pt: "Trabalho",
+      fr: "Travail",
+    },
+    rest: {
+      en: "Rest",
+      pt: "Descanso",
+      fr: "Repos",
+    },
+    prepare: {
+      en: "Prepare",
+      pt: "Preparo",
+      fr: "Préparer",
+    },
+  };
+
   return (
     <>
       <div className=" mt-6 2xl:mt-8 flex flex-col justify-center min-[350px]:mx-auto gap-2 2xl:gap-3 ">
         <div className="flex ">
           {/* Rounds */}
-          <InputNumber label="Rounds" className="w-[7rem] xs:w-[9.8rem] max-w-[9.8rem]" inputStoreType="Rounds" maxLength={8} />
+          <InputNumber label={lang.rounds[preferredLanguage]} className="w-[7rem] xs:w-[9.8rem] max-w-[9.8rem]" inputStoreType="Rounds" maxLength={8} />
           <ClearInput />
         </div>
 
         <div className="flex items-center">
           {/* Work */}
-          <InputNumber label="Work" width="w-14" inputStoreType="WorkMinutes" />
+          <InputNumber label={lang.work[preferredLanguage]} width="w-14" inputStoreType="WorkMinutes" />
           <InputNumber label=":" width="w-14" nogap inputStoreType="WorkSeconds" />
           <InputColor inputType="WorkColor" />
         </div>
 
         <div className="flex items-center">
           {/* Rest */}
-          <InputNumber label="Rest" width="w-14" inputStoreType="RestMinutes" />
+          <InputNumber label={lang.rest[preferredLanguage]} width="w-14" inputStoreType="RestMinutes" />
           <InputNumber label=":" width="w-14" nogap inputStoreType="RestSeconds" />
           <InputColor inputType="RestColor" />
         </div>
 
         <div className="flex items-center">
           {/* Prepare */}
-          <InputNumber label="Prepare" width="w-14" inputStoreType="PrepareMinutes" />
+          <InputNumber label={lang.prepare[preferredLanguage]} width="w-14" inputStoreType="PrepareMinutes" />
           <InputNumber label=":" width="w-14" nogap inputStoreType="PrepareSeconds" />
           <InputColor inputType="PrepColor" />
         </div>

@@ -16,6 +16,7 @@ export default function SaveTimer() {
   let prepSec = useStore((state) => state.PrepareSeconds);
   let prepColor = useStore((state) => state.PrepColor);
   let setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
+  let preferredLanguage = useStore((state) => state.preferredLanguage);
 
   useEffect(() => {
     let timerStorage = JSON.parse(localStorage.getItem("savedTimer")) || [];
@@ -44,15 +45,23 @@ export default function SaveTimer() {
     setSavedWorkouts([...timerStorage, data]);
   }
 
+  let lang = {
+    placeholder: {
+      en: "Timer Name",
+      pt: "Nome do Timer",
+      fr: "Nom du minuteur",
+    },
+  };
+
   return (
     <div className="mt-7 flex justify-center gap-4 ">
       <input
         type="text"
-        className="placeholder:text-text-gray-300 ml-2 text-white bg-black border-2 border-gray-600 rounded-2xl py-2 px-1 text-center focus:bg-neutral-800  hover:bg-neutral-900 focus:outline-none focus:border-gray-500 focus:placeholder:text-transparent transition duration-300
+        className="placeholder:text-text-gray-300 w-2/4  xs:w-5/12 sm:w-3/12  ml-2 text-white bg-black border-2 text-ellipsis border-gray-600 rounded-2xl py-2 px-1 text-center focus:bg-neutral-800  hover:bg-neutral-900 focus:outline-none focus:border-gray-500 focus:placeholder:text-transparent transition duration-300
       } "
         id="workout-name"
         maxLength="25"
-        placeholder="Workout Name"
+        placeholder={lang.placeholder[preferredLanguage]}
         value={timerName}
         onChange={(e) => setTimerName(e.target.value)}
       />
