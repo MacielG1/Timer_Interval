@@ -52,7 +52,7 @@ export default function SettingsMenu() {
       setState: setAutoRestartonReset,
       text: {
         en: "Auto restart on reset",
-        pt: "Reiniciar automaticamente quando resetar",
+        pt: "Reiniciar automaticamente quando reiniciar",
         fr: "Redémarrage automatique sur réinitialisation",
       },
     },
