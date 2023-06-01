@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="#fff">
+  <path
+    fillRule="evenodd"
+    d="M10 14l6-6H4l6 6z"
+    clipRule="evenodd"
+  />
+</svg>

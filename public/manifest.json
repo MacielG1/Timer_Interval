@@ -6,13 +6,18 @@
 
   "icons": [
     {
-      "src": "/timer.png",
+      "src": "./timer.png",
       "type": "image/png",
       "sizes": "100x100"
+    },{
+      "src": "./timer.svg",
+      "type": "image/svg+xml",
+      "sizes": "100x100"
     }
+
   ],
  
   "display": "standalone",
-  "theme_color": "#880808",
+  "theme_color": "#0c0b0f",
   "background_color": "#ffffff"
 }
