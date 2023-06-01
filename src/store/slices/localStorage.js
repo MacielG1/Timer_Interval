@@ -2,6 +2,7 @@ const storageSlice = (set) => ({
   // saved timers
   savedWorkouts: [],
   setSavedWorkouts: (value) => set({ savedWorkouts: value }),
+
   // saved settings
   skipLastRest: true,
   setSkipLastRest: (value) => set({ skipLastRest: value }),
