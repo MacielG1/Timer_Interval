@@ -14,5 +14,14 @@
     <div id="root"></div>
     <div id="modal-root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS%"></script>
+<script defer type="module">  
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', import.meta.env.VITE_GOOGLE_ANALYTICS);
+</script>
   </body>
 </html>
