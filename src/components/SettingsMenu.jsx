@@ -105,6 +105,7 @@ export default function SettingsMenu() {
 
   // language useEffect
   let supportedLanguages = ["en", "pt", "fr"];
+
   useEffect(() => {
     // check if user language is supported, else use "en"
     let langSupported = supportedLanguages.includes(navigator.language.slice(0, 2)) ? navigator.language.slice(0, 2) : "en";

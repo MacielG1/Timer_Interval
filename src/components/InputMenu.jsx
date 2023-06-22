@@ -51,7 +51,8 @@ export default function CenterMenu() {
   const preferredLanguage = useStore((state) => state.preferredLanguage);
 
   useEffect(() => {
-    if (timer) {
+    let isMounted = true; //  used in the cleanup function
+    if (timer && isMounted) {
       if (workoutFullTime === "00:00") {
         timer?.stop();
         resetTimer();
@@ -130,6 +131,10 @@ export default function CenterMenu() {
       }
       setProgressBarValue(time);
     } // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      isMounted = false;
+    };
   }, [time]);
 
   let lang = {

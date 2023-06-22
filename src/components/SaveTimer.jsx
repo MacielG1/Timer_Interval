@@ -43,6 +43,7 @@ export default function SaveTimer() {
 
     localStorage.setItem("savedTimer", JSON.stringify([...timerStorage, data]));
     setSavedWorkouts([...timerStorage, data]);
+    setTimerName("");
   }
 
   let lang = {
