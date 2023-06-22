@@ -5,7 +5,7 @@ import pad from "../../utils/PadNum";
 import generateUniqueId from "../../utils/generateUniqueID";
 
 export default function InputNumber(props) {
-  let { label, className, nogap, inputStoreType, maxLength = 3, width } = props;
+  const { label, className, nogap, inputStoreType, maxLength = 3, width } = props;
 
   const uniqueId = generateUniqueId();
   const [isFocused, setIsFocused] = useState(false);

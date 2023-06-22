@@ -3,20 +3,20 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function SaveTimer() {
-  let [timerName, setTimerName] = useState("");
+  const [timerName, setTimerName] = useState("");
 
-  let Rounds = useStore((state) => state.Rounds);
-  let workMin = useStore((state) => state.WorkMinutes);
-  let workSec = useStore((state) => state.WorkSeconds);
-  let workColor = useStore((state) => state.WorkColor);
-  let restMin = useStore((state) => state.RestMinutes);
-  let restSec = useStore((state) => state.RestSeconds);
-  let restColor = useStore((state) => state.RestColor);
-  let prepMin = useStore((state) => state.PrepareMinutes);
-  let prepSec = useStore((state) => state.PrepareSeconds);
-  let prepColor = useStore((state) => state.PrepColor);
-  let setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
-  let preferredLanguage = useStore((state) => state.preferredLanguage);
+  const Rounds = useStore((state) => state.Rounds);
+  const workMin = useStore((state) => state.WorkMinutes);
+  const workSec = useStore((state) => state.WorkSeconds);
+  const workColor = useStore((state) => state.WorkColor);
+  const restMin = useStore((state) => state.RestMinutes);
+  const restSec = useStore((state) => state.RestSeconds);
+  const restColor = useStore((state) => state.RestColor);
+  const prepMin = useStore((state) => state.PrepareMinutes);
+  const prepSec = useStore((state) => state.PrepareSeconds);
+  const prepColor = useStore((state) => state.PrepColor);
+  const setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
+  const preferredLanguage = useStore((state) => state.preferredLanguage);
 
   useEffect(() => {
     let timerStorage = JSON.parse(localStorage.getItem("savedTimer")) || [];

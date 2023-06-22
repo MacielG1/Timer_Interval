@@ -2,12 +2,12 @@ import useStore from "../store/useStore";
 import convert_Sec_to_MinSec from "../utils/Convert-Sec-to-MinSec";
 
 export default function TimerDisplay() {
-  let time = useStore((state) => state.time);
+  const time = useStore((state) => state.time);
 
-  let selectedRounds = useStore((state) => state.roundsSelected);
-  let currentRound = useStore((state) => state.currentRound);
-  let workoutFullTime = useStore((state) => state.workoutFullTime);
-  let totalTimePassed = useStore((state) => state.totalTimePassed);
+  const selectedRounds = useStore((state) => state.roundsSelected);
+  const currentRound = useStore((state) => state.currentRound);
+  const workoutFullTime = useStore((state) => state.workoutFullTime);
+  const totalTimePassed = useStore((state) => state.totalTimePassed);
 
   return (
     <div className="mx-auto ">
