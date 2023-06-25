@@ -19,6 +19,7 @@ export default function Sidebar() {
 
   function handleLoad(id) {
     let timer = savedWorkouts.find((i) => i.id === id);
+
     useStore.setState({
       Rounds: timer.Rounds,
       WorkMinutes: timer.WorkMinutes,
@@ -29,7 +30,7 @@ export default function Sidebar() {
       RestColor: timer.RestColor,
       PrepareMinutes: timer.PrepareMinutes,
       PrepareSeconds: timer.PrepareSeconds,
-      PrepColor: timer.prepColor,
+      PrepColor: timer.PrepColor,
     });
 
     // adds an effect to the inputs when the btn is clicked
