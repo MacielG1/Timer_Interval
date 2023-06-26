@@ -5,6 +5,7 @@ import useStore from "../store/useStore";
 import SettingIcon from "../assets/icons/SettingIcon.svg";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { isMobileDevice } from "../utils/Vibrate";
+import ImportExportTimers from "./ImportExportTimers";
 
 export default function SettingsMenu() {
   let [isOpen, setIsOpen] = useState(false);
@@ -132,6 +133,7 @@ export default function SettingsMenu() {
           />
         );
       })}
+      <ImportExportTimers />
 
       <div>
         <LanguageSwitcher />

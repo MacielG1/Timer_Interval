@@ -23,7 +23,7 @@ export default function Dropdown() {
   }
 
   return (
-    <div className="flex  items-center justify-center">
+    <div className="flex  items-center justify-center pt-3">
       <div
         className=" group hover:border-b-none rounded-lg border border-gray-500 
            flex flex-col justify-center text-sm font-medium tracking-wide text-zinc-200  hover:text-white focus:outline-none  "
@@ -33,7 +33,7 @@ export default function Dropdown() {
           <img src={arrowDownIcon} alt="Arrow Down" width={16} height={16} className="absolute right-0 transition-opacity duration-200 group-hover:opacity-0 " />
         </span>
 
-        <div className=" hidden transform whitespace-nowrap rounded-md rounded-t-none bg-zinc-600 shadow-lg  group-hover:block ">
+        <div className=" hidden transform whitespace-nowrap rounded-md rounded-t-none bg-zinc-600 shadow-lg  group-hover:block  transition duration-1000">
           {countries.map((c) => {
             if (c.name !== preferredLanguage) {
               return (
