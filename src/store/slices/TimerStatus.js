@@ -66,13 +66,14 @@ const timerStatusSlice = (set, get) => ({
     set({
       Rounds: 1,
       WorkMinutes: "00",
-      WorkSeconds: "00",
+      WorkSeconds: "01",
       WorkColor: "#00993B",
       RestMinutes: "00",
-      RestSeconds: "00",
+      RestSeconds: "01",
       RestColor: "#DB0000",
       PrepareMinutes: "00",
-      PrepareSeconds: "00",
+      PrepareSeconds: "01",
+      PrepColor: "#2f498a",
     });
   },
 });
