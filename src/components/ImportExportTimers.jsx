@@ -1,7 +1,23 @@
 import useStore from "../store/useStore";
+import { useState, useEffect } from "react";
 
 export default function ImportExportTimers() {
+  const [isExportable, setIsExportable] = useState(false);
+
   const setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
+  const preferredLanguage = useStore((state) => state.preferredLanguage);
+
+  useEffect(() => {
+    const savedTimers = JSON.parse(localStorage.getItem("savedTimer"));
+
+    if (savedTimers && savedTimers.length > 0) {
+      setIsExportable(true);
+    }
+
+    return () => {
+      setIsExportable(false);
+    };
+  }, []);
 
   // funciton that export the timers to a json file and create a download link with React
   function exportTimers() {
@@ -27,6 +43,9 @@ export default function ImportExportTimers() {
     fileReader.onload = (e) => {
       const fileContent = e.target.result;
       const jsonData = JSON.parse(fileContent);
+      // validate the json file
+      if (!Array.isArray(jsonData)) return;
+      if (!jsonData.some((timer) => timer.id && timer.Rounds)) return;
 
       const currentSavedTimers = JSON.parse(localStorage.getItem("savedTimer")) || [];
 
@@ -41,26 +60,38 @@ export default function ImportExportTimers() {
     fileReader.readAsText(file); // triggers onload event above
   }
 
+  let lang = {
+    import: {
+      en: "Import",
+      fr: "Importer",
+      pt: "Importar",
+    },
+    export: {
+      en: "Export",
+      fr: "Exporter",
+      pt: "Exportar",
+    },
+  };
+
   return (
     <div className="flex justify-center gap-3 py-2 mx-auto">
-      {/* <button className=" max-w-[5rem] px-4 py-2 h-10 bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300  rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400   ">
-        Import
-      </button> */}
-      <div className="grid w-24 max-w-sm items-center gap-1.5">
+      <div className="grid w-24 max-w-sm items-center justify-center gap-1.5">
         <label
           htmlFor="fileInput"
-          className="relative inline-flex items-center px-4 py-2 max-w-[5rem] text-white bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300 rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400 "
+          className="text-base relative inline-flex items-center px-2 py-2 max-w-[5.2rem] text-white bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300 rounded-md  font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400 "
         >
-          <span>Import</span>
-          <input type="file" id="fileInput" className="sr-only" onChange={importTimers} />
+          <span>{lang.import[preferredLanguage]}</span>
+          <input type="file" id="fileInput" accept=".json" className="sr-only" onChange={importTimers} />
         </label>
       </div>
-      <button
-        onClick={exportTimers}
-        className=" max-w-[5rem] px-4 py-2  h-10  bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300 rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400 "
-      >
-        Export
-      </button>
+      {isExportable && (
+        <button
+          onClick={exportTimers}
+          className=" max-w-[5.2rem]  px-2 py-2  h-10  bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300 rounded-md text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400 "
+        >
+          {lang.export[preferredLanguage]}
+        </button>
+      )}
     </div>
   );
 }

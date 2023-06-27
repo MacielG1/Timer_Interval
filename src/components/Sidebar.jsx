@@ -1,6 +1,6 @@
 import useStore from "../store/useStore";
 import CloseIcon from "../assets/icons/CloseIcon.svg";
-import { lang } from "../utils/lang";
+import { inputSettings as lang } from "../utils/lang";
 
 export default function Sidebar() {
   const removeBorders = useStore((state) => state.removeUIBorders);

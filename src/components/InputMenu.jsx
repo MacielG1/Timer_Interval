@@ -7,7 +7,7 @@ import playSound from "../utils/playSound";
 import vibrate from "../utils/Vibrate";
 import sound1 from "../assets/sounds/sound1.mp3";
 import sound2 from "../assets/sounds/sound2.mp3";
-import { lang } from "../utils/lang";
+import { inputSettings as lang } from "../utils/lang";
 
 export default function CenterMenu() {
   const totalRounds = useStore((state) => state.roundsSelected);

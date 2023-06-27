@@ -1,4 +1,4 @@
-export let lang = {
+export let inputSettings = {
   rounds: {
     en: "Rounds",
     pt: "Rodadas",
