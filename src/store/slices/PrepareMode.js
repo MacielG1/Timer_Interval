@@ -9,7 +9,7 @@ const prepareSlice = (set, get) => ({
     const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ PrepareMinutes: newValue });
   },
-  PrepareSeconds: "02",
+  PrepareSeconds: "03",
   increasePrepareSeconds: () => set((state) => ({ PrepareSeconds: padTime(Number(state.PrepareSeconds) + 1) })),
   decreasePrepareSeconds: () => set((state) => ({ PrepareSeconds: padTime(Math.max(state.PrepareSeconds - 1, 0)) })),
   setPrepareSeconds: (value) => {

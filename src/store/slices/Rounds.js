@@ -1,5 +1,5 @@
 const roundsSlice = (set) => ({
-  Rounds: 2,
+  Rounds: 5,
   increaseRounds: () => set((state) => ({ Rounds: Math.min(Number(state.Rounds) + 1, 100000000) })),
   decreaseRounds: () => set((state) => ({ Rounds: Math.max(state.Rounds - 1, 1) })),
   setRounds: (value) => {

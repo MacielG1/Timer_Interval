@@ -9,7 +9,7 @@ const restSlice = (set, get) => ({
     const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ RestMinutes: newValue });
   },
-  RestSeconds: "02",
+  RestSeconds: "10",
   increaseRestSeconds: () => set((state) => ({ RestSeconds: padTime(Number(state.RestSeconds) + 1) })),
   decreaseRestSeconds: () => set((state) => ({ RestSeconds: padTime(Math.max(state.RestSeconds - 1, 0)) })),
   setRestSeconds: (value) => {

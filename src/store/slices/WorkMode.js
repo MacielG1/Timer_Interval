@@ -9,7 +9,7 @@ const workSlice = (set, get) => ({
     const newValue = value === "" ? "" : value; // if the value is greater than 60, set it to 60
     set({ WorkMinutes: newValue });
   },
-  WorkSeconds: "02",
+  WorkSeconds: "10",
   increaseWorkSeconds: () => set((state) => ({ WorkSeconds: padTime(Number(state.WorkSeconds) + 1) })),
   decreaseWorkSeconds: () => set((state) => ({ WorkSeconds: padTime(Math.max(state.WorkSeconds - 1, 0)) })),
   setWorkSeconds: (value) => {
