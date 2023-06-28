@@ -131,11 +131,11 @@ export default function CenterMenu() {
         increaseTotalTimePassed();
       }
       setProgressBarValue(time);
-    } // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
 
     return () => {
       isMounted = false;
-    };
+    }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
   return (
