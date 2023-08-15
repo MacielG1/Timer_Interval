@@ -55,7 +55,7 @@ export default function Sidebar() {
               </button>
             </div>
             <div className="flex text-2xl justify-center">
-              <span>{i.Title || `Timer ${index}`}</span>
+              <span>{i.Title || `Timer ${index + 1}`}</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 2xl:  sm:gap-y-2 py-2 sm:py-4 px-0 justify-center text-left text-md sm:text-lg min-[1360px]:text-sm min-[1620px]:text-base">
               <span className="text-center sm:text-left order-1 sm:order-none  ">
