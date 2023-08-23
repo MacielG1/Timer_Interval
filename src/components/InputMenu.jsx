@@ -143,28 +143,28 @@ export default function CenterMenu() {
       <div className=" mt-6 2xl:mt-8 flex flex-col justify-center min-[350px]:mx-auto gap-2 2xl:gap-3 ">
         <div className="flex ">
           {/* Rounds */}
-          <InputNumber label={lang.rounds[preferredLanguage]} className="w-[7rem] xs:w-[9.8rem] max-w-[9.8rem]" inputStoreType="Rounds" maxLength={8} />
+          <InputNumber label={lang.rounds[preferredLanguage]} className="w-[8rem] xs:w-[9.65rem] " inputStoreType="Rounds" maxLength={8} />
           <ClearInput />
         </div>
 
         <div className="flex items-center">
           {/* Work */}
-          <InputNumber label={lang.work[preferredLanguage]} width="w-14" inputStoreType="WorkMinutes" />
-          <InputNumber label=":" width="w-14" nogap inputStoreType="WorkSeconds" />
+          <InputNumber label={lang.work[preferredLanguage]} inputStoreType="WorkMinutes" />
+          <InputNumber label=":" nogap inputStoreType="WorkSeconds" />
           <InputColor inputType="WorkColor" />
         </div>
 
         <div className="flex items-center">
           {/* Rest */}
-          <InputNumber label={lang.rest[preferredLanguage]} width="w-14" inputStoreType="RestMinutes" />
-          <InputNumber label=":" width="w-14" nogap inputStoreType="RestSeconds" />
+          <InputNumber label={lang.rest[preferredLanguage]} inputStoreType="RestMinutes" />
+          <InputNumber label=":" nogap inputStoreType="RestSeconds" />
           <InputColor inputType="RestColor" />
         </div>
 
         <div className="flex items-center">
           {/* Prepare */}
-          <InputNumber label={lang.prepare[preferredLanguage]} width="w-14" inputStoreType="PrepareMinutes" />
-          <InputNumber label=":" width="w-14" nogap inputStoreType="PrepareSeconds" />
+          <InputNumber label={lang.prepare[preferredLanguage]} inputStoreType="PrepareMinutes" />
+          <InputNumber label=":" nogap inputStoreType="PrepareSeconds" />
           <InputColor inputType="PrepColor" />
         </div>
       </div>

@@ -135,9 +135,7 @@ export default function SettingsMenu() {
       })}
       <ImportExportTimers />
 
-      <div>
-        <LanguageSwitcher />
-      </div>
+      <LanguageSwitcher />
     </>
   );
 
@@ -146,7 +144,7 @@ export default function SettingsMenu() {
   }
 
   return (
-    <div className="p-5 px-7 absolute top-0 right-0 z-30">
+    <div className="py-5 xs:px-7 absolute top-0 right-0 z-30">
       <div className="relative">
         <div onClick={savedSettingsettings}>
           <img src={SettingIcon} alt="Settings" className="inline-block cursor-pointer w-8" width="32" height="32" />
