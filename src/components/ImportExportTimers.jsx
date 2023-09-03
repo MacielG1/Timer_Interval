@@ -78,7 +78,7 @@ export default function ImportExportTimers() {
       <div className="grid w-24 max-w-sm items-center justify-center gap-1.5">
         <label
           htmlFor="fileInput"
-          className="text-base relative inline-flex items-center px-2 py-2 max-w-[5.2rem] text-white bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300 rounded-md  font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400 "
+          className="text-base cursor-pointer relative inline-flex items-center px-2 py-2 max-w-[5.2rem] text-white bg-neutral-800 hover:bg-neutral-900 hover:border border border-neutral-950 duration-300 rounded-md  font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:border focus-visible:border-neutral-400 "
         >
           <span>{lang.import[preferredLanguage]}</span>
           <input type="file" id="fileInput" accept=".json" className="sr-only" onChange={importTimers} />
