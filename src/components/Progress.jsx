@@ -108,11 +108,9 @@ export default function Progress() {
       <button
         onClick={handlePrev}
         type="button"
-        className="
-       rounded-lg  sm:px-3  py-2 text-gray-300 hover:scale-110
-        transition duration-300 "
+        className={`${isPaused || !timer ? "invisible" : "visible"} rounded-lg sm:px-3 py-2 text-gray-300 hover:scale-105
+       transition duration-300`}
         id="previousBtn"
-        style={{ visibility: timer ? "visible" : "hidden" }}
       >
         <span>◀</span>
       </button>
@@ -124,11 +122,9 @@ export default function Progress() {
       <button
         onClick={handleNext}
         type="button"
-        className="
-      rounded-lg sm:px-3 py-2 text-gray-300 hover:scale-110
-       transition duration-300"
+        className={`${isPaused || !timer ? "invisible" : "visible"}  rounded-lg sm:px-3 py-2 text-gray-300 hover:scale-105
+       transition duration-300`}
         id="nextBtn"
-        style={{ visibility: timer ? "visible" : "hidden" }}
       >
         <span>▶</span>
       </button>
