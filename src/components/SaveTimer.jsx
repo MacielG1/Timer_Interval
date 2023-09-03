@@ -73,7 +73,7 @@ export default function SaveTimer() {
       />
       <button
         onClick={handleSaveTimer}
-        className="rounded-2xl px-2 text-center text-blue-400 text-md  sm:text-xl bg-neutral-800  cursor-pointer hover:bg-neutral-700/70 transition duration-300"
+        className="rounded-2xl px-2 text-center text-blue-400 hover:text-blue-500/90 text-md  sm:text-xl bg-neutral-800  cursor-pointer hover:bg-neutral-700/70 transition duration-300"
       >
         {lang.save[preferredLanguage]}
       </button>
