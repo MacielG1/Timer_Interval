@@ -37,7 +37,7 @@ export default function Sidebar() {
     SetIsLoadingSavedTimer(true);
     setTimeout(() => {
       SetIsLoadingSavedTimer(false);
-    }, 400);
+    }, 300);
   }
 
   return (

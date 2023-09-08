@@ -6,6 +6,7 @@ export default function MenuButtons() {
   const setWorkTime = useStore((state) => state.setWorkTime);
   const setRestTime = useStore((state) => state.setRestTime);
   const setPrepTime = useStore((state) => state.setPrepTime);
+
   const setRoundsSelected = useStore((state) => state.setRoundsSelected);
   const setTimer = useStore((state) => state.setTimer);
   const timeIncrease = useStore((state) => state.timeIncrease);
