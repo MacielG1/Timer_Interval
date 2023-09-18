@@ -13,6 +13,7 @@ function App() {
     >
       <TimerApp />
       <Sidebar />
+
       <SettingsMenu />
     </main>
   );

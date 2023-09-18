@@ -32,7 +32,7 @@ export default function TimerApp() {
 
   return (
     <section
-      className="relative flex flex-col mx-auto px-0 xs:px-2 sm:px-4 py-4 2xl:py-12 bg-neutral-950 border border-gray-500 mt-3 sm:mt-5 text-center rounded-xl
+      className="relative flex flex-col mx-auto px-0 xs:px-2 sm:px-4 py-2 2xl:py-12 bg-neutral-950 border border-gray-500 mt-3 sm:mt-5 text-center rounded-xl
     max-w-sm  xs:max-w-lg sm:max-w-xl lg:max-w-[41rem]  2xl:max-w-3xl w-full 2xl:mt-10  "
       style={{
         borderColor: enableBackgroundColors && removeBorders ? "transparent" : mainTimerBorder,
