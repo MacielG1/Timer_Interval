@@ -64,7 +64,7 @@ export default function SaveTimer() {
     <div className="mt-7 flex justify-center gap-4 ">
       <input
         type="text"
-        className="placeholder:text-text-gray-300 w-2/4  xs:w-5/12 sm:w-3/12  ml-2 text-white bg-black border-2 text-ellipsis border-gray-600 rounded-2xl py-2 px-1 text-center focus:bg-neutral-800  hover:bg-neutral-900 focus:outline-none focus:border-gray-500 focus:placeholder:text-transparent transition duration-300
+        className="placeholder:text-text-gray-300 w-2/4  xs:w-5/12 sm:w-3/12  ml-2 text-white bg-black border-2 text-ellipsis border-gray-600 rounded-2xl py-2 px-1 text-center focus-visible:bg-neutral-800  hover:bg-neutral-900 focus-visible:outline-none focus-visible:border-gray-500 focus-visible:placeholder:text-transparent transition duration-300
       } "
         id="workout-name"
         maxLength="25"
@@ -74,7 +74,7 @@ export default function SaveTimer() {
       />
       <button
         onClick={handleSaveTimer}
-        className="rounded-2xl px-2 text-center text-blue-400 hover:text-blue-500/90 text-md  sm:text-xl bg-neutral-800  cursor-pointer hover:bg-neutral-700/70 transition duration-300"
+        className="rounded-2xl px-2 text-center text-blue-400 hover:text-blue-500/90 text-md sm:text-xl bg-neutral-800 cursor-pointer hover:bg-neutral-700/70 transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
       >
         {lang.save[preferredLanguage]}
       </button>

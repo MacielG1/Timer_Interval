@@ -53,11 +53,12 @@ export default function SidebarItem({ item }) {
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className="relative bg-neutral-900 px-16 sm:px-6 md:px-6  2xl:px-10 py-2  2xl:py-4 rounded-lg  border border-gray-500  text-base xl:text-sm 2xl:text-base"
+      className="relative bg-neutral-900 px-16 sm:px-6 md:px-6 2xl:px-10 py-2 mb-4 2xl:py-4 rounded-lg border border-gray-500 text-base xl:text-sm 2xl:text-base focus-visible:outline-none"
       style={{ ...style, borderColor: enableBackgroundColors && removeBorders ? "transparent" : "" }}
+      tabIndex={-1}
     >
       <div className="p-2 px-3 absolute top-0 right-0">
-        <button onClick={() => handleDelete(item.id)}>
+        <button onClick={() => handleDelete(item.id)} className="focus-visible:outline-none focus:scale-110">
           <img src={CloseIcon} alt="close" className="w-6" width="24" height="24" />
         </button>
       </div>
@@ -69,7 +70,7 @@ export default function SidebarItem({ item }) {
           {lang.rounds[preferredLanguage]} {item.Rounds}
         </span>
 
-        <div className="order-2  sm:order-none flex  gap-2 items-center">
+        <div className="order-2 sm:order-none flex  gap-2 items-center">
           <span className={`rounded-full w-3 h-3 inline-block `} style={{ backgroundColor: item.WorkColor }}></span>
           <span>
             {lang.work[preferredLanguage]} {`${item.WorkMinutes}:${item.WorkSeconds}`}
@@ -90,7 +91,10 @@ export default function SidebarItem({ item }) {
         </div>
       </div>
       <div className="flex justify-center">
-        <button onClick={() => handleLoad(item.id)} className="bg-blue-500  text-black font-medium rounded-lg px-2 py-1 hover:bg-blue-600 transition duration-200">
+        <button
+          onClick={() => handleLoad(item.id)}
+          className="bg-blue-500  text-black font-medium rounded-lg px-2 py-1 hover:bg-blue-600 transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 "
+        >
           Load
         </button>
       </div>
