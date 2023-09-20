@@ -13,8 +13,8 @@ export default function Button(props) {
       w-[5.5rem] xs:w-28 sm:w-36 lg:w-40 
       text-black  py-2 xs:px-2 text-center rounded-3xl
     border border-1 border-black hover:border-neutral-950
-    transition-colors duration-200 focus:outline-none focus:border-transparent
-    disabled:focus-border-transparent 
+    transition-colors duration-200 focus-visible:outline-none focus-visible:border-transparent
+    disabled:focus-visible-border-transparent focus-visible:scale-110
     `}
     >
       {text}

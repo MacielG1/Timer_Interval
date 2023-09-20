@@ -18,7 +18,7 @@ export default function ClearInput() {
   };
   return (
     <div className="group relative flex justify-center items-center mx-3">
-      <button onClick={handleClear} className="rounded  py-1 text-sm shadow-sm focus:outline-none">
+      <button onClick={handleClear} className="rounded  py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring focus-visible:ring-neutral-700">
         <img src={ClearIcon} alt="Clear Icon" className="min-w-fit w-6" width="24" height="24" />
       </button>
 
