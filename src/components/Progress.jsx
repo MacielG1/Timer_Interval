@@ -76,15 +76,14 @@ export default function Progress() {
           setTime(0);
 
           if (currentRound === totalRounds && skipLastRest) {
-            timer.stop();
+            timer?.stop();
             resetTimer();
             return;
           }
         } else if (whichInterval === "rest") {
           setCurrentRound(currentRound + 1);
-
           if (currentRound === totalRounds) {
-            timer.stop;
+            timer?.stop();
             resetTimer();
             return;
           } else {
