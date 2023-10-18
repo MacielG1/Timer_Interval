@@ -1,13 +1,17 @@
 import { StateCreator } from "zustand";
+import { timerStatusType } from "./TimerStatus";
 
-const storageSlice: StateCreator<localStorageType> = (set) => ({
+const storageSlice: StateCreator<localStorageType & timerStatusType, [], [], localStorageType> = (set, get) => ({
   // saved timers
   savedWorkouts: [],
   setSavedWorkouts: (value) => set({ savedWorkouts: value }),
 
   // saved settings
   skipLastRest: true,
-  setSkipLastRest: (value) => set({ skipLastRest: value }),
+  setSkipLastRest: (value) => {
+    set({ skipLastRest: value });
+    get().updateWorkoutFullTime();
+  },
 
   enableBackgroundColors: false,
   setEnableBackgroundColors: (value) => set({ enableBackgroundColors: value }),

@@ -61,7 +61,7 @@ export default function SaveTimer() {
   };
 
   return (
-    <div className="mt-7 flex justify-center gap-4 ">
+    <div className="mt-4 flex justify-center gap-4 md:mt-7 ">
       <input
         type="text"
         className="placeholder:text-text-gray-300 } ml-2 w-2/4 text-ellipsis rounded-2xl border-2 border-gray-600 bg-black px-1 py-2 text-center text-white transition duration-300  hover:bg-neutral-900 focus-visible:border-gray-500 focus-visible:bg-neutral-800 focus-visible:outline-none focus-visible:placeholder:text-transparent xs:w-5/12

@@ -73,6 +73,14 @@ const timerStatusSlice: StateCreator<
       timer: null,
     });
   },
+  changeInterval: () => {
+    set({
+      time: -1,
+      progressBarValue: "0",
+      currentBackgroundColor: "#0a0a0a",
+      mainTimerBorder: get().whichInterval === "work" ? get().WorkColor : get().RestColor,
+    });
+  },
 
   clearInputFields: () => {
     set({
@@ -122,4 +130,5 @@ export type timerStatusType = {
   SetIsLoadingSavedTimer: (value: boolean) => void;
   resetTimer: () => void;
   clearInputFields: () => void;
+  changeInterval: () => void;
 };
