@@ -3,11 +3,15 @@ import { DndContext, DragEndEvent, PointerSensor, TouchSensor, closestCenter, us
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import SidebarItem from "./SidebarItem";
-=
+
 export default function Sidebar() {
   const [savedWorkouts, setSavedWorkouts] = useStore((state) => [state.savedWorkouts, state.setSavedWorkouts]);
 
-  const pointerSensor = useSensor(PointerSensor);
+  const pointerSensor = useSensor(PointerSensor, {
+    activationConstraint: {
+      distance: 8,
+    },
+  });
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
       delay: 250,
