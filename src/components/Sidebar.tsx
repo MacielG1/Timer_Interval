@@ -7,11 +7,7 @@ import SidebarItem from "./SidebarItem";
 export default function Sidebar() {
   const [savedWorkouts, setSavedWorkouts] = useStore((state) => [state.savedWorkouts, state.setSavedWorkouts]);
 
-  const pointerSensor = useSensor(PointerSensor, {
-    activationConstraint: {
-      distance: 8,
-    },
-  });
+  const pointerSensor = useSensor(PointerSensor);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
       delay: 250,
@@ -41,7 +37,7 @@ export default function Sidebar() {
       <aside className="mx-auto mt-5 flex max-w-fit justify-center xl:mt-4 min-[1360px]:fixed 2xl:mt-9 2xl:pl-1 ">
         <section className="2xl-px-4 flex flex-col gap-6 py-1 2xl:px-2">
           <div className="max-h-[95vh] pr-1 xl:overflow-y-auto 2xl:pr-2">
-            <SortableContext items={savedWorkouts}>
+            <SortableContext items={savedWorkouts} id="items">
               {savedWorkouts.map((i) => (
                 <SidebarItem key={i.id} item={i} />
               ))}
