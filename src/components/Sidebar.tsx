@@ -3,6 +3,7 @@ import { DndContext, DragEndEvent, PointerSensor, TouchSensor, closestCenter, us
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 // import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import SidebarItem from "./SidebarItem";
+// import { isMobileDevice } from "../utils/Vibrate";
 
 export default function Sidebar() {
   const [savedWorkouts, setSavedWorkouts] = useStore((state) => [state.savedWorkouts, state.setSavedWorkouts]);
