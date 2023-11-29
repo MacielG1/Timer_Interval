@@ -1,7 +1,7 @@
 import useStore from "../store/useStore";
 import { DndContext, DragEndEvent, PointerSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+// import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import SidebarItem from "./SidebarItem";
 
 export default function Sidebar() {
@@ -37,7 +37,7 @@ export default function Sidebar() {
   }
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} modifiers={[restrictToVerticalAxis]}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <aside className="mx-auto mt-5 flex max-w-fit justify-center xl:mt-4 min-[1360px]:fixed 2xl:mt-9 2xl:pl-1 ">
         <section className="2xl-px-4 flex flex-col gap-6 py-1 2xl:px-2">
           <div className="max-h-[95vh] pr-1 xl:overflow-y-auto 2xl:pr-2">
