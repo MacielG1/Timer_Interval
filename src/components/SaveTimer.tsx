@@ -28,7 +28,7 @@ export default function SaveTimer() {
     let timerStorage = JSON.parse(localStorage.getItem("savedTimer") || "[]");
 
     let data = {
-      Title: `Timer ${timerStorage.length + 1}`,
+      Title: timerName || `Timer ${timerStorage.length + 1}`,
       id: uuidv4(),
       Rounds: Rounds,
       WorkMinutes: workMin,
