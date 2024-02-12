@@ -1,43 +1,14 @@
-import PropTypes from "prop-types";
 import useStore from "../../store/useStore";
 
-type InputColorProps =
-  {
-    inputType:
-      | "WorkColor"
-      | "RestColor"
-      | "PrepColor";
-  };
-export default function InputColor({
-  inputType,
-}: InputColorProps) {
-  const color =
-    useStore(
-      (
-        state,
-      ) =>
-        state[
-          inputType
-        ],
-    );
-  const setColor =
-    useStore(
-      (
-        state,
-      ) =>
-        state[
-          `set${inputType}`
-        ],
-    );
+type InputColorProps = {
+  inputType: "WorkColor" | "RestColor" | "PrepColor";
+};
+export default function InputColor({ inputType }: InputColorProps) {
+  const color = useStore((state) => state[inputType]);
+  const setColor = useStore((state) => state[`set${inputType}`]);
 
-  function handleColor(
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) {
-    setColor(
-      e
-        .target
-        .value,
-    );
+  function handleColor(e: React.ChangeEvent<HTMLInputElement>) {
+    setColor(e.target.value);
   }
 
   return (
@@ -46,23 +17,9 @@ export default function InputColor({
       type="color"
       name="workColor"
       aria-label="Color Picker"
-      onChange={
-        handleColor
-      }
-      value={
-        color
-      }
-      id={
-        inputType
-      }
+      onChange={handleColor}
+      value={color}
+      id={inputType}
     />
   );
 }
-
-InputColor.propTypes =
-  {
-    inputType:
-      PropTypes
-        .string
-        .isRequired,
-  };
