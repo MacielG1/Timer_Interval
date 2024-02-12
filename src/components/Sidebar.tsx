@@ -1,5 +1,5 @@
 import useStore from "../store/useStore";
-import { DndContext, DragEndEvent, PointerSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, MouseSensor, TouchSensor, closestCenter, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import SidebarItem from "./SidebarItem";
@@ -7,19 +7,15 @@ import SidebarItem from "./SidebarItem";
 export default function Sidebar() {
   const [savedWorkouts, setSavedWorkouts] = useStore((state) => [state.savedWorkouts, state.setSavedWorkouts]);
 
-  const pointerSensor = useSensor(PointerSensor, {
+  const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
       distance: 8,
     },
   });
-  const touchSensor = useSensor(TouchSensor, {
-    activationConstraint: {
-      delay: 250,
-      tolerance: 5,
-    },
-  });
 
-  const sensors = useSensors(pointerSensor, touchSensor);
+  const touchSensor = useSensor(TouchSensor, {});
+
+  const sensors = useSensors(mouseSensor, touchSensor);
 
   function handleDragEnd(e: DragEndEvent) {
     const { active, over } = e;
