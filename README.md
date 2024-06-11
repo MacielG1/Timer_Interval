@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://macielg1.github.io/Timer_Interval/">
-    <img src="https://github.com/MacielG1/Timer_Interval/assets/52795576/4d0ff00a-c89a-42db-82cd-0bccf4d3afe1" alt="Logo" height="80">
+    <img src="https://github.com/MacielG1/Timer_Interval/assets/52795576/4d0ff00a-c89a-42db-82cd-0bccf4d3afe1" alt="Timer Interval" height="80">
   </a>
 </div>
 
