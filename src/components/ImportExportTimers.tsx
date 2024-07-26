@@ -82,7 +82,7 @@ export default function ImportExportTimers() {
       <div className="grid w-24 max-w-sm items-center justify-center gap-1.5">
         <label
           htmlFor="fileInput"
-          className="ring-offset-background relative inline-flex max-w-[5.2rem] cursor-pointer items-center rounded-md border border-neutral-950 bg-neutral-800 px-2 py-2 text-base font-medium text-white transition-colors  duration-300 hover:border hover:bg-neutral-900 focus-visible:border focus-visible:border-neutral-400 focus-visible:outline-none "
+          className="ring-offset-background relative inline-flex max-w-[5.2rem] cursor-pointer items-center rounded-md border border-neutral-950 bg-neutral-800 px-2 py-2 text-base font-medium text-white transition-colors duration-300 hover:border hover:bg-neutral-900 focus-visible:border focus-visible:border-neutral-400 focus-visible:outline-none"
         >
           <span>{lang.import[preferredLanguage]}</span>
           <input type="file" id="fileInput" accept=".json" className="sr-only" onChange={importTimers} />
@@ -91,7 +91,7 @@ export default function ImportExportTimers() {
       {isExportable && (
         <button
           onClick={exportTimers}
-          className=" ring-offset-background h-10 max-w-[5.2rem] rounded-md border border-neutral-950 bg-neutral-800 px-2 py-2 text-base font-medium transition-colors duration-300 hover:border hover:bg-neutral-900 focus-visible:border focus-visible:border-neutral-400 focus-visible:outline-none "
+          className="ring-offset-background h-10 max-w-[5.2rem] rounded-md border border-neutral-950 bg-neutral-800 px-2 py-2 text-base font-medium transition-colors duration-300 hover:border hover:bg-neutral-900 focus-visible:border focus-visible:border-neutral-400 focus-visible:outline-none"
         >
           {lang.export[preferredLanguage]}
         </button>
