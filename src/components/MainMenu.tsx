@@ -122,10 +122,10 @@ export default function MainMenu() {
 
   return (
     <>
-      <div className="mt-6 flex flex-col justify-center gap-2 min-[350px]:mx-auto 2xl:mt-8 2xl:gap-3 ">
-        <div className="flex ">
+      <div className="mt-6 flex flex-col justify-center gap-2 min-[350px]:mx-auto 2xl:mt-8 2xl:gap-3">
+        <div className="flex">
           {/* Rounds */}
-          <InputNumber label={lang.rounds[preferredLanguage]} className="w-[8rem] xs:w-[9.65rem] " inputStoreType="Rounds" maxLength={8} />
+          <InputNumber label={lang.rounds[preferredLanguage]} className="w-[8rem] xs:w-[9.65rem]" inputStoreType="Rounds" maxLength={8} />
           <ClearInput />
         </div>
 
