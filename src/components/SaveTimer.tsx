@@ -1,6 +1,5 @@
 import useStore from "../store/useStore";
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export default function SaveTimer() {
   const [timerName, setTimerName] = useState("");
@@ -29,7 +28,7 @@ export default function SaveTimer() {
 
     let data = {
       Title: timerName || `Timer ${timerStorage.length + 1}`,
-      id: uuidv4(),
+      id: Math.random().toString(36).substring(2, 15) + Date.now().toString(36),
       Rounds: Rounds,
       WorkMinutes: workMin,
       WorkSeconds: workSec,
@@ -42,6 +41,7 @@ export default function SaveTimer() {
       PrepColor: prepColor,
     };
 
+    console.log(data.id);
     localStorage.setItem("savedTimer", JSON.stringify([...timerStorage, data]));
     setSavedWorkouts([...timerStorage, data]);
     setTimerName("");
@@ -61,11 +61,10 @@ export default function SaveTimer() {
   };
 
   return (
-    <div className="mt-4 flex justify-center gap-4 md:mt-7 ">
+    <div className="mt-1 flex justify-center gap-4 py-4 md:py-4 2xl:py-7">
       <input
         type="text"
-        className="placeholder:text-text-gray-300 } ml-2 w-2/4 text-ellipsis rounded-2xl border-2 border-gray-600 bg-black px-1 py-2 text-center text-white transition duration-300  hover:bg-neutral-900 focus-visible:border-gray-500 focus-visible:bg-neutral-800 focus-visible:outline-none focus-visible:placeholder:text-transparent xs:w-5/12
-      sm:w-3/12 "
+        className="placeholder:text-text-gray-300 } ml-2 w-2/4 text-ellipsis rounded-2xl border-2 border-gray-600 bg-black px-1 py-2 text-center text-white transition duration-300 hover:bg-neutral-900 focus-visible:border-gray-500 focus-visible:bg-neutral-800 focus-visible:outline-none focus-visible:placeholder:text-transparent xs:w-5/12 sm:w-3/12"
         id="workout-name"
         maxLength={25}
         placeholder={lang.placeholder[preferredLanguage]}

@@ -152,7 +152,7 @@ export default function SettingsMenu() {
   }
 
   return (
-    <div className="absolute right-0 top-0 z-30 py-5 xs:px-7">
+    <div className="absolute right-0 top-0 z-30 px-4 py-5 xs:px-7">
       <div className="relative">
         <div onClick={savedSettingsettings}>
           <Icons.settingIcon className="inline-block w-8 cursor-pointer" />

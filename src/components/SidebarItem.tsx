@@ -52,7 +52,7 @@ export default function SidebarItem({ item }: { item: savedWorkoutType }) {
       ref={setNodeRef}
       {...attributes}
       {...listeners}
-      className={`relative mb-4 rounded-lg border border-gray-500 bg-neutral-900 px-16 py-2 text-base focus-visible:outline-none sm:px-6 md:px-6 xl:text-sm 2xl:px-10 2xl:py-4 2xl:text-base ${
+      className={`relative mb-4 rounded-lg border border-gray-500 bg-neutral-900 px-12 py-2 focus-visible:outline-none sm:px-6 md:px-4 md:py-3 2xl:px-6 ${
         isDragging ? "cursor-grab" : "cursor-pointer"
       }`}
       style={{
@@ -69,13 +69,13 @@ export default function SidebarItem({ item }: { item: savedWorkoutType }) {
       <div className="flex justify-center text-2xl">
         <span>{item.Title}</span>
       </div>
-      <div className="text-md grid grid-cols-1 justify-center gap-2   px-0 py-2 text-left sm:grid-cols-2 sm:gap-3 sm:gap-y-2 sm:py-4 sm:text-lg lg:gap-x-6 min-[1360px]:text-sm min-[1620px]:text-base">
-        <span className="order-1 text-center sm:order-none sm:pl-5 sm:text-left  ">
+      <div className="grid grid-cols-1 justify-center gap-2 px-0 py-2 text-left text-sm sm:grid-cols-2 sm:gap-5 sm:gap-y-1 sm:py-4 2xl:text-base">
+        <span className="order-1 text-center sm:order-none sm:pl-5 sm:text-left">
           {lang.rounds[preferredLanguage]} {item.Rounds}
         </span>
 
-        <div className="order-2 flex items-center  gap-2 sm:order-none">
-          <span className={`inline-block h-3 w-3 rounded-full `} style={{ backgroundColor: item.WorkColor }}></span>
+        <div className="order-2 flex items-center gap-2 sm:order-none">
+          <span className={`inline-block h-3 w-3 rounded-full`} style={{ backgroundColor: item.WorkColor }}></span>
           <span>
             {lang.work[preferredLanguage]} {`${item.WorkMinutes}:${item.WorkSeconds}`}
           </span>
@@ -97,7 +97,7 @@ export default function SidebarItem({ item }: { item: savedWorkoutType }) {
       <div className="flex justify-center">
         <button
           onClick={() => handleLoad(item.id)}
-          className="rounded-lg  bg-blue-500 px-2 py-1 font-medium text-black transition duration-200 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 "
+          className="rounded-lg bg-blue-500 px-2 py-1 font-medium text-black transition duration-200 hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
         >
           Load
         </button>

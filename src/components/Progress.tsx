@@ -1,3 +1,4 @@
+import { useEventListener } from "usehooks-ts";
 import useStore from "../store/useStore";
 import Timer from "../utils/Timer";
 
@@ -131,6 +132,18 @@ export default function Progress() {
       }
     }
   }
+  function onKeyDown(e: KeyboardEvent) {
+    const isInputFocused = ["INPUT", "TEXTAREA"].includes(document.activeElement?.nodeName ?? "") || document.activeElement?.hasAttribute("contenteditable");
+
+    if (!isInputFocused) {
+      if (e.key === "ArrowLeft") {
+        handlePrev();
+      } else if (e.key === "ArrowRight") {
+        handleNext();
+      }
+    }
+  }
+  useEventListener("keydown", onKeyDown);
 
   return (
     <div className="mt-1 flex items-center justify-center gap-4 text-5xl sm:px-4 2xl:mt-10">

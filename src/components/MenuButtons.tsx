@@ -1,3 +1,4 @@
+import { useEventListener } from "usehooks-ts";
 import useStore from "../store/useStore";
 import Timer from "../utils/Timer";
 import Button from "./Button";
@@ -65,6 +66,22 @@ export default function MenuButtons() {
       fr: "Reset",
     },
   };
+
+  function onKeyDown(e: KeyboardEvent) {
+    const isInputFocused = ["INPUT", "TEXTAREA"].includes(document.activeElement?.nodeName ?? "") || document.activeElement?.hasAttribute("contenteditable");
+
+    if (e.key === " " && !isInputFocused) {
+      if (!timer) {
+        handleStart();
+      } else if (isPaused) {
+        handleStart();
+      } else {
+        handlePause();
+      }
+    }
+  }
+
+  useEventListener("keydown", onKeyDown);
 
   return (
     <div className="mt-2 flex items-center justify-center gap-1 xs:gap-2 sm:mt-4 sm:gap-4 2xl:mt-10">

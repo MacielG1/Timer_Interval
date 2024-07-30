@@ -31,7 +31,7 @@ export default function TimerApp() {
 
   return (
     <section
-      className="relative mx-auto mt-3 flex w-full max-w-sm flex-col rounded-xl border border-gray-500 bg-neutral-950 px-0 py-2 text-center max-md:pb-4 xs:max-w-lg xs:px-2 sm:mt-5 sm:max-w-xl sm:px-4 lg:max-w-[41rem] 2xl:mt-10 2xl:max-w-3xl 2xl:py-12"
+      className="relative mx-auto mt-3 flex w-full max-w-sm flex-col rounded-xl border border-gray-500 bg-neutral-950 px-0 py-2 text-center xs:max-w-lg xs:px-2 sm:mt-5 sm:max-w-xl sm:px-4 lg:max-w-[41rem] 2xl:mt-10 2xl:max-w-3xl 2xl:pt-12"
       style={{
         borderColor: enableBackgroundColors && removeBorders ? "transparent" : mainTimerBorder,
         borderWidth: mainTimerBorder === "#787777" ? "1px" : "3px",

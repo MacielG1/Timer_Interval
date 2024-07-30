@@ -79,22 +79,16 @@ export default function InputNumber(props: InputNumberProps) {
   }
 
   return (
-    <div className={`${nogap ? "" : "xs:gap-3 lg:gap-4"} flex items-center justify-center max-[360px]:gap-1 `}>
+    <div className={`${nogap ? "" : "xs:gap-3 lg:gap-4"} flex items-center justify-center max-[360px]:gap-1`}>
       <label
         htmlFor={label + Math.random()}
-        className={`${nogap ? "px-2 max-[360px]:pr-1 " : "w-24 max-[360px]:w-16 "}
-          text-center text-sm text-gray-200 xs:text-base  sm:text-lg lg:text-xl`}
+        className={`${nogap ? "px-2 max-[360px]:pr-1" : "w-24 max-[360px]:w-16"} text-center text-sm text-gray-200 xs:text-base sm:text-lg lg:text-xl`}
       >
         {label}
       </label>
       <div className="flex items-center">
         <input
-          className={`h-12 w-11 min-w-[2.5rem] rounded-l-lg border border-r border-neutral-600 bg-neutral-800
-          px-2 text-center text-xl focus:border-gray-500 focus:bg-[#313030] focus:font-medium
-          focus:outline-none max-[360px]:text-base xs:w-14 
-          ${isLoadingSavedTimer ? "bg-[#2b2a2a]" : "bg-[#242424]"} 
-          ${isFocused ? "font-medium" : "font-normal"}
-          ${className}`}
+          className={`h-12 w-11 min-w-[2.5rem] rounded-l-lg border border-r border-neutral-600 bg-neutral-800 px-2 text-center text-xl focus:border-gray-500 focus:bg-[#313030] focus:font-medium focus:outline-none max-[360px]:text-base xs:w-14 ${isLoadingSavedTimer ? "bg-[#353535]" : "bg-[#242424]"} ${isFocused ? "font-medium" : "font-normal"} ${className}`}
           type="number"
           id={label + Math.random()}
           name={label}
@@ -115,7 +109,7 @@ export default function InputNumber(props: InputNumberProps) {
             +
           </button>
           <button
-            className="flex h-1/2 w-5 items-center justify-center rounded-br-md hover:bg-neutral-700 "
+            className="flex h-1/2 w-5 items-center justify-center rounded-br-md hover:bg-neutral-700"
             onMouseLeave={timeoutClear}
             onMouseUp={timeoutClear}
             onMouseDown={decrementHold}
