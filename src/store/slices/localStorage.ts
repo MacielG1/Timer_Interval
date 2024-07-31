@@ -37,6 +37,7 @@ export default storageSlice;
 export type localStorageType = {
   savedWorkouts: savedWorkoutType[];
   setSavedWorkouts: (value: savedWorkoutType[]) => void;
+
   skipLastRest: boolean;
   setSkipLastRest: (value: boolean) => void;
   enableBackgroundColors: boolean;

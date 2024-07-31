@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useStore from "../../store/useStore";
 import pad from "../../utils/PadNum";
 
@@ -13,11 +13,20 @@ export default function InputNumber(props: InputNumberProps) {
   const { label, className, nogap, inputStoreType, maxLength = 3 } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-  const count = useStore((state) => state[inputStoreType]);
+  let count = useStore((state) => state[inputStoreType]);
   const increase = useStore((state) => state[`increase${inputStoreType}`]);
   const decrease = useStore((state) => state[`decrease${inputStoreType}`]);
   const setCount = useStore((state) => state[`set${inputStoreType}`]);
   const isLoadingSavedTimer = useStore((state) => state.isLoadingSavedTimer);
+
+  useEffect(() => {
+    const latestTimer = localStorage.getItem("latestTimer");
+
+    if (latestTimer) {
+      const parsedTimer = JSON.parse(latestTimer);
+      setCount(parsedTimer[inputStoreType]);
+    }
+  }, []);
 
   const timerRef = useRef<number | null>(null);
 

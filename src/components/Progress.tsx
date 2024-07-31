@@ -94,19 +94,20 @@ export default function Progress() {
         setWhichInterval("rest");
         changeInterval();
 
-        setTimer(
-          new Timer(1000, () => {
-            timeIncrease();
-          }),
-        );
-
         if (currentRound === totalRounds && skipLastRest) {
           timer?.stop();
           resetTimer();
           return;
+        } else {
+          setTimer(
+            new Timer(1000, () => {
+              timeIncrease();
+            }),
+          );
         }
       } else if (whichInterval === "rest") {
         setCurrentRound(currentRound + 1);
+
         if (currentRound === totalRounds) {
           timer?.stop();
           resetTimer();

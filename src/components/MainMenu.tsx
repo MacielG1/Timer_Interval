@@ -8,6 +8,8 @@ import vibrate from "../utils/Vibrate";
 import sound1 from "../assets/sounds/sound1.mp3";
 import sound2 from "../assets/sounds/sound2.mp3";
 import { inputSettings as lang } from "../utils/lang";
+import { changeFavicon } from "../utils/changeFavicon";
+import convertSecToMinSec from "../utils/convertSecToMinSec";
 
 export default function MainMenu() {
   const [totalRounds, currentRound, currentRoundIncrease] = useStore((state) => [state.roundsSelected, state.currentRound, state.currentRoundIncrease]);
@@ -32,6 +34,8 @@ export default function MainMenu() {
   const [enableSounds, enableVibrate, prepareonEveryRound] = useStore((state) => [state.enableSounds, state.enableVibrate, state.prepareonEveryRound]);
   const preferredLanguage = useStore((state) => state.preferredLanguage);
 
+  const changeTitle = (title: string) => (document.title = title);
+
   useEffect(() => {
     let isMounted = true; //  used in the cleanup function
 
@@ -45,6 +49,8 @@ export default function MainMenu() {
       if (whichInterval === "prepare") {
         setProgressBarMax(prepTime);
         setCurrentProgressColor(prepColor);
+        changeFavicon("timer.svg");
+
         if (enableBackgroundColors) {
           setCurrentBackgroundColor(prepColor);
           setRemoveUIBorders(true);
@@ -54,6 +60,7 @@ export default function MainMenu() {
       } else if (whichInterval === "work") {
         setProgressBarMax(workTime);
         setCurrentProgressColor(workColor);
+        changeFavicon("timer-green.svg");
         if (enableBackgroundColors) {
           setCurrentBackgroundColor(workColor);
           setRemoveUIBorders(true);
@@ -63,6 +70,9 @@ export default function MainMenu() {
       } else if (whichInterval === "rest") {
         setProgressBarMax(restTime);
         setCurrentProgressColor(restColor);
+        changeFavicon("timer-red.svg");
+        changeTitle("Timer Interval");
+
         if (enableBackgroundColors) {
           setCurrentBackgroundColor(restColor);
           setRemoveUIBorders(true);
@@ -93,12 +103,17 @@ export default function MainMenu() {
         if (currentRound === totalRounds && skipLastRest) {
           timer?.stop();
           resetTimer();
+          changeFavicon("timer.svg");
+          changeTitle("Timer Interval");
           return;
         }
       } else if (whichInterval === "rest" && time > +restTime) {
         if (currentRound === totalRounds) {
           timer?.stop();
           resetTimer();
+          changeFavicon("timer.svg");
+          changeTitle("Timer Interval");
+
           return;
         } else {
           currentRoundIncrease();
@@ -112,11 +127,15 @@ export default function MainMenu() {
       } else if (time !== 0 && (whichInterval === "work" || whichInterval === "rest") && currentRound <= totalRounds) {
         increaseTotalTimePassed();
       }
+      changeTitle(convertSecToMinSec(time));
+
       setProgressBarValue(`${time}`);
     }
 
     return () => {
       isMounted = false;
+      changeFavicon("timer.svg");
+      changeTitle("Interval Timer");
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 

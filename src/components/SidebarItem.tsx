@@ -39,6 +39,7 @@ export default function SidebarItem({ item }: { item: savedWorkoutType }) {
       PrepareSeconds: timer.PrepareSeconds,
       PrepColor: timer.PrepColor,
     });
+    localStorage.setItem("latestTimer", JSON.stringify(timer));
 
     // adds an effect to the inputs when the button is clicked
     SetIsLoadingSavedTimer(true);

@@ -107,8 +107,8 @@ export type timerStatusType = {
   time: number;
   setTime: (value: number) => void;
   timeIncrease: () => void;
-  whichInterval: string;
-  setWhichInterval: (value: string) => void;
+  whichInterval: "work" | "rest" | "prepare";
+  setWhichInterval: (value: "work" | "rest" | "prepare") => void;
   currentRound: number;
   setCurrentRound: (value: number) => void;
   currentRoundIncrease: () => void;
