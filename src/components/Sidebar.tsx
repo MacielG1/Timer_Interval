@@ -36,7 +36,7 @@ export default function Sidebar() {
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd} modifiers={[restrictToVerticalAxis]}>
       <aside className="mx-auto mt-5 flex max-w-fit justify-center xl:mt-4 min-[1360px]:fixed 2xl:mt-9 2xl:pl-1">
         <section className="2xl-px-4 flex flex-col gap-6 py-1 2xl:px-2">
-          <div className="max-h-[95vh] min-h-[90vh] pr-1 xl:overflow-y-auto 2xl:pr-2">
+          <div className="max-h-[95vh] pr-1 xl:min-h-[90vh] xl:overflow-y-auto 2xl:pr-2">
             <SortableContext items={savedWorkouts} id="items">
               {savedWorkouts.map((i) => (
                 <SidebarItem key={i.id} item={i} />

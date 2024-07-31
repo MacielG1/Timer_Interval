@@ -18,7 +18,7 @@ const prepareSlice: StateCreator<prepareType> = (set, get) => ({
     set({ PrepareSeconds: newValue });
   },
 
-  PrepColor: "#2f498a",
+  PrepColor: "#2361e8",
   setPrepColor: (value) => set({ PrepColor: value }),
 
   getPrepareFullTimeInSeconds: () => {

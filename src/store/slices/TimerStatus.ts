@@ -51,7 +51,7 @@ const timerStatusSlice: StateCreator<
   removeUIBorders: false,
   setRemoveUIBorders: (value) => set({ removeUIBorders: value }),
 
-  mainTimerBorder: "#787777",
+  mainTimerBorder: "#4d4d4d",
   setMainTimerBorder: (value) => set({ mainTimerBorder: value }),
 
   isLoadingSavedTimer: false,

@@ -3,13 +3,13 @@ import useStore from "../store/useStore";
 import InputNumber from "./inputs/InputNumber";
 import InputColor from "./inputs/InputColor";
 import ClearInput from "./ClearInput";
-import playSound from "../utils/playSound";
 import vibrate from "../utils/Vibrate";
 import sound1 from "../assets/sounds/sound1.mp3";
 import sound2 from "../assets/sounds/sound2.mp3";
 import { inputSettings as lang } from "../utils/lang";
 import { changeFavicon } from "../utils/changeFavicon";
 import convertSecToMinSec from "../utils/convertSecToMinSec";
+import { useAudio } from "../utils/playSound";
 
 export default function MainMenu() {
   const [totalRounds, currentRound, currentRoundIncrease] = useStore((state) => [state.roundsSelected, state.currentRound, state.currentRoundIncrease]);
@@ -35,6 +35,7 @@ export default function MainMenu() {
   const preferredLanguage = useStore((state) => state.preferredLanguage);
 
   const changeTitle = (title: string) => (document.title = title);
+  const playSound = useAudio(sound1, sound2);
 
   useEffect(() => {
     let isMounted = true; //  used in the cleanup function
@@ -49,7 +50,7 @@ export default function MainMenu() {
       if (whichInterval === "prepare") {
         setProgressBarMax(prepTime);
         setCurrentProgressColor(prepColor);
-        changeFavicon("timer.svg");
+        changeFavicon(prepColor);
 
         if (enableBackgroundColors) {
           setCurrentBackgroundColor(prepColor);
@@ -60,7 +61,7 @@ export default function MainMenu() {
       } else if (whichInterval === "work") {
         setProgressBarMax(workTime);
         setCurrentProgressColor(workColor);
-        changeFavicon("timer-green.svg");
+        changeFavicon(workColor);
         if (enableBackgroundColors) {
           setCurrentBackgroundColor(workColor);
           setRemoveUIBorders(true);
@@ -70,7 +71,7 @@ export default function MainMenu() {
       } else if (whichInterval === "rest") {
         setProgressBarMax(restTime);
         setCurrentProgressColor(restColor);
-        changeFavicon("timer-red.svg");
+        changeFavicon(restColor);
         changeTitle("Timer Interval");
 
         if (enableBackgroundColors) {
@@ -103,7 +104,7 @@ export default function MainMenu() {
         if (currentRound === totalRounds && skipLastRest) {
           timer?.stop();
           resetTimer();
-          changeFavicon("timer.svg");
+          changeFavicon("#2361e8");
           changeTitle("Timer Interval");
           return;
         }
@@ -111,7 +112,7 @@ export default function MainMenu() {
         if (currentRound === totalRounds) {
           timer?.stop();
           resetTimer();
-          changeFavicon("timer.svg");
+          changeFavicon("#2361e8");
           changeTitle("Timer Interval");
 
           return;
@@ -134,7 +135,7 @@ export default function MainMenu() {
 
     return () => {
       isMounted = false;
-      changeFavicon("timer.svg");
+      changeFavicon("#2361e8");
       changeTitle("Interval Timer");
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
