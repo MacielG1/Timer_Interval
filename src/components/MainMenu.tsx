@@ -10,6 +10,7 @@ import { inputSettings as lang } from "../utils/lang";
 import { changeFavicon } from "../utils/changeFavicon";
 import convertSecToMinSec from "../utils/convertSecToMinSec";
 import { useAudio } from "../utils/playSound";
+import useScreenWake from "../utils/useScreenWake";
 
 export default function MainMenu() {
   const [totalRounds, currentRound, currentRoundIncrease] = useStore((state) => [state.roundsSelected, state.currentRound, state.currentRoundIncrease]);
@@ -36,14 +37,18 @@ export default function MainMenu() {
 
   const changeTitle = (title: string) => (document.title = title);
   const playSound = useAudio(sound1, sound2);
+  const { enableScreenWake, releaseScreenWake } = useScreenWake(); // Destructure the functions
 
   useEffect(() => {
     let isMounted = true; //  used in the cleanup function
 
     if (timer && isMounted) {
+      enableScreenWake();
+
       if (workoutFullTime === "00:00") {
         timer?.stop();
         resetTimer();
+        releaseScreenWake();
         return;
       }
 
@@ -106,6 +111,7 @@ export default function MainMenu() {
           resetTimer();
           changeFavicon("#2361e8");
           changeTitle("Timer Interval");
+          releaseScreenWake();
           return;
         }
       } else if (whichInterval === "rest" && time > +restTime) {
@@ -114,6 +120,7 @@ export default function MainMenu() {
           resetTimer();
           changeFavicon("#2361e8");
           changeTitle("Timer Interval");
+          releaseScreenWake();
 
           return;
         } else {
@@ -137,6 +144,7 @@ export default function MainMenu() {
       isMounted = false;
       changeFavicon("#2361e8");
       changeTitle("Interval Timer");
+      releaseScreenWake();
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
