@@ -97,7 +97,8 @@ export default function InputNumber(props: InputNumberProps) {
       </label>
       <div className="flex items-center">
         <input
-          className={`h-12 w-11 min-w-[2.5rem] rounded-l-lg border border-r border-neutral-600 bg-neutral-800 px-2 text-center text-xl focus:border-gray-500 focus:bg-[#313030] focus:font-medium focus:outline-none max-[360px]:text-base xs:w-14 ${isLoadingSavedTimer ? "bg-[#353535]" : "bg-[#242424]"} ${isFocused ? "font-medium" : "font-normal"} ${className}`}
+          className={`h-12 w-11 min-w-[2.5rem] rounded-l-lg border border-r border-neutral-600 bg-neutral-800 px-2 text-center text-xl focus:border-gray-500 focus:bg-[#313030] focus:font-medium focus:outline-none max-[360px]:text-base xs:w-14 ${isFocused ? "font-medium" : "font-normal"} ${className} `}
+          style={{ backgroundColor: isLoadingSavedTimer ? "#353535" : "#242424" }}
           type="number"
           id={label + Math.random()}
           name={label}

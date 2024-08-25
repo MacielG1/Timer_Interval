@@ -86,13 +86,13 @@ const timerStatusSlice: StateCreator<
     set({
       Rounds: 1,
       WorkMinutes: "00",
-      WorkSeconds: "01",
+      WorkSeconds: "10",
       WorkColor: "#00993B",
       RestMinutes: "00",
-      RestSeconds: "01",
+      RestSeconds: "10",
       RestColor: "#DB0000",
       PrepareMinutes: "00",
-      PrepareSeconds: "01",
+      PrepareSeconds: "03",
       PrepColor: "#2f498a",
     });
   },

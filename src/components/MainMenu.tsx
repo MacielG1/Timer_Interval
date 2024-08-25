@@ -6,6 +6,8 @@ import ClearInput from "./ClearInput";
 import vibrate from "../utils/Vibrate";
 import sound1 from "../assets/sounds/sound1.mp3";
 import sound2 from "../assets/sounds/sound2.mp3";
+import start from "../assets/sounds/start.mp3";
+import stop from "../assets/sounds/stop.mp3";
 import { inputSettings as lang } from "../utils/lang";
 import { changeFavicon } from "../utils/changeFavicon";
 import convertSecToMinSec from "../utils/convertSecToMinSec";
@@ -34,9 +36,11 @@ export default function MainMenu() {
 
   const [enableSounds, enableVibrate, prepareonEveryRound] = useStore((state) => [state.enableSounds, state.enableVibrate, state.prepareonEveryRound]);
   const preferredLanguage = useStore((state) => state.preferredLanguage);
+  const preferredSound = useStore((state) => state.preferredSound);
 
   const changeTitle = (title: string) => (document.title = title);
-  const playSound = useAudio(sound1, sound2);
+
+  let playSound = useAudio(start, stop, sound1, sound2);
   const { enableScreenWake, releaseScreenWake } = useScreenWake(); // Destructure the functions
 
   useEffect(() => {
@@ -88,9 +92,14 @@ export default function MainMenu() {
       }
       if (enableSounds) {
         if (whichInterval === "work" && time == 0) {
-          playSound(sound1);
+          if (preferredSound === "audio1") {
+            playSound(sound1);
+          } else if (preferredSound === "audio2") {
+            playSound(start);
+          }
         } else if (whichInterval === "work" && time == +workTime) {
-          playSound(sound2);
+          if (preferredSound === "audio1") playSound(sound2);
+          else if (preferredSound === "audio2") playSound(stop);
         }
       }
       if (enableVibrate) {
@@ -144,7 +153,9 @@ export default function MainMenu() {
       isMounted = false;
       changeFavicon("#2361e8");
       changeTitle("Interval Timer");
-      releaseScreenWake();
+      if (!timer) {
+        releaseScreenWake();
+      }
     }; // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 

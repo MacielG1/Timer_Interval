@@ -1,5 +1,5 @@
 import Sidebar from "./components/Sidebar";
-import SettingsMenu from "./components/SettingsMenu";
+import SettingsMenu from "./components/settings/SettingsMenu";
 import useStore from "./store/useStore";
 import TimerApp from "./components/TimerApp";
 

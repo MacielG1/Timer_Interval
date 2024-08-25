@@ -30,6 +30,9 @@ const storageSlice: StateCreator<localStorageType & timerStatusType, [], [], loc
 
   preferredLanguage: "en",
   setPreferredLanguage: (value) => set({ preferredLanguage: value }),
+
+  preferredSound: "audio1",
+  setPreferredSound: (value) => set({ preferredSound: value }),
 });
 
 export default storageSlice;
@@ -52,6 +55,8 @@ export type localStorageType = {
   setEnableVibrate: (value: boolean) => void;
   preferredLanguage: "en" | "pt" | "fr";
   setPreferredLanguage: (value: "en" | "pt" | "fr") => void;
+  preferredSound: "audio1" | "audio2";
+  setPreferredSound: (value: "audio1" | "audio2") => void;
 };
 
 export type savedWorkoutType = {
