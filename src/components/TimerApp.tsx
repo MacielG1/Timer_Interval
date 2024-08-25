@@ -10,23 +10,26 @@ export default function TimerApp() {
   const [removeBorders, mainTimerBorder] = useStore((state) => [state.removeUIBorders, state.mainTimerBorder]);
   const [enableBackgroundColors, savedWorkouts] = useStore((state) => [state.enableBackgroundColors, state.savedWorkouts]);
   const [isSmallScreen, setIsSmallScreen] = useState(window.matchMedia("(max-width: 600px)").matches);
+  const setPreferredSound = useStore((state) => state.setPreferredSound);
 
   function handleMediaQueryChange(mediaQuery: MediaQueryListEvent) {
-    if (mediaQuery.matches) {
-      setIsSmallScreen(true);
-    } else {
-      setIsSmallScreen(false);
-    }
+    if (mediaQuery.matches) setIsSmallScreen(true);
+    else setIsSmallScreen(false);
   }
   useEffect(() => {
     const mediaQuery = window.matchMedia("max-width: 600px");
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-    if (mediaQuery.matches) {
-      setIsSmallScreen(true);
-    } // cleanup function
+    if (mediaQuery.matches) setIsSmallScreen(true);
+
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const audioType = localStorage.getItem("audioType");
+    if (audioType === "audio1") setPreferredSound("audio1");
+    else if (audioType === "audio2") setPreferredSound("audio2");
   }, []);
 
   return (

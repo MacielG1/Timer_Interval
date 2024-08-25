@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import ModalSettings from "./ModalSettings";
-import Toggle from "./ToggleInput";
-import useStore from "../store/useStore";
+import ModalSettings from "../ModalSettings";
+import Toggle from "../ToggleInput";
+import useStore from "../../store/useStore";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { isMobileDevice } from "../utils/Vibrate";
+import { isMobileDevice } from "../../utils/Vibrate";
 import ImportExportTimers from "./ImportExportTimers";
-import { Icons } from "../assets/Icons";
+import { Icons } from "../../assets/Icons";
+import EnableSounds from "./EnableSounds";
 
 export default function SettingsMenu() {
   let [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,6 @@ export default function SettingsMenu() {
   const [autoRestartonReset, setAutoRestartonReset] = useStore((state) => [state.autoRestartonReset, state.setAutoRestartonReset]);
 
   const [prepOnEveryRound, setPrepOnEveryRound] = useStore((state) => [state.prepareonEveryRound, state.setPrepareonEveryRound]);
-  const [enableSounds, setEnableSounds] = useStore((state) => [state.enableSounds, state.setEnableSounds]);
   const [enableVibrate, setEnableVibrate] = useStore((state) => [state.enableVibrate, state.setEnableVibrate]);
 
   const settings = [
@@ -61,16 +61,7 @@ export default function SettingsMenu() {
         fr: "Préparation à chaque tour",
       },
     },
-    {
-      item: "enableSounds",
-      state: enableSounds,
-      setState: setEnableSounds,
-      text: {
-        en: "Enable sounds",
-        pt: "Ativar sons",
-        fr: "Activer les sons",
-      },
-    },
+
     {
       item: "enableVibrate",
       state: enableVibrate,
@@ -133,7 +124,7 @@ export default function SettingsMenu() {
           />
         );
       })}
-
+      <EnableSounds handleToggleSetting={handleToggleSetting} preferredLanguage={preferredLanguage} />
       <a href="https://www.buymeacoffee.com/macielg1" target="_blank" referrerPolicy="no-referrer" className="mx-auto my-1 inline-block">
         <img
           src={`https://img.buymeacoffee.com/button-api/?text=${supportText[preferredLanguage]}&emoji=☕&slug=macielg1&button_colour=0091ff&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00`}
@@ -142,7 +133,6 @@ export default function SettingsMenu() {
         />
       </a>
       <ImportExportTimers />
-
       <LanguageSwitcher />
     </>
   );
