@@ -13,7 +13,12 @@ export default function Sidebar() {
     },
   });
 
-  const touchSensor = useSensor(TouchSensor, {});
+  const touchSensor = useSensor(TouchSensor, {
+    activationConstraint: {
+      delay: 250, // Adjust the delay as needed
+      tolerance: 5, // Adjust the tolerance as needed
+    },
+  });
 
   const sensors = useSensors(mouseSensor, touchSensor);
 
