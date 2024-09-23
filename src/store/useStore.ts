@@ -10,7 +10,12 @@ import storageSlice, { localStorageType } from "./slices/localStorage.js";
 
 type Slices = currentTimerType & timerStatusType & roundsType & workType & restType & prepareType & progressBarType & localStorageType;
 
-const useStore = create<Slices>()((...args) => ({
+type WakeLockSlice = {
+  wakeLock: WakeLockSentinel | null;
+  setWakeLock: (wakeLock: WakeLockSentinel | null) => void;
+};
+
+const useStore = create<Slices & WakeLockSlice>()((...args) => ({
   ...roundsSlice(...args),
   ...workSlice(...args),
   ...restSlice(...args),
@@ -19,5 +24,8 @@ const useStore = create<Slices>()((...args) => ({
   ...progressBarSlice(...args),
   ...currentTimerOptionsSlice(...args),
   ...storageSlice(...args),
+  wakeLock: null,
+  setWakeLock: (wakeLock) => args[0]({ wakeLock }),
 }));
+
 export default useStore;

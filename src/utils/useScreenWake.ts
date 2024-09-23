@@ -1,34 +1,32 @@
-import { useEffect } from "react";
+import { useCallback } from "react";
+import useStore from "../store/useStore";
 
 export default function useScreenWake() {
-  let wakeLock: WakeLockSentinel | null = null;
+  const [wakeLock, setWakeLock] = useStore((state) => [state.wakeLock, state.setWakeLock]);
 
-  async function enableScreenWake() {
-    try {
-      wakeLock = await navigator.wakeLock.request("screen");
-      console.log("Screen wake lock activated");
-    } catch (error) {
-      console.error("Error requesting screen wake lock:", error);
+  const enableScreenWake = useCallback(async () => {
+    if (!wakeLock) {
+      try {
+        const newWakeLock = await navigator.wakeLock.request("screen");
+        setWakeLock(newWakeLock);
+      } catch (error) {
+        console.error("Error requesting screen wake lock:", error);
+      }
     }
-  }
+  }, [wakeLock, setWakeLock]);
 
-  function releaseScreenWake() {
+  const releaseScreenWake = useCallback(() => {
     if (wakeLock) {
-      wakeLock.release();
-      console.log("Screen wake lock released");
+      wakeLock
+        .release()
+        .then(() => {
+          setWakeLock(null);
+        })
+        .catch((error) => {
+          console.error("Error releasing screen wake lock:", error);
+        });
     }
-  }
+  }, [wakeLock, setWakeLock]);
 
-  useEffect(() => {
-    // Request wake lock when the component mounts
-    enableScreenWake();
-
-    // Release wake lock when the component unmounts
-    return () => {
-      releaseScreenWake();
-    };
-  }, []); // Empty dependency array ensures the effect runs only once
-
-  // Return both functions for external use
   return { enableScreenWake, releaseScreenWake };
 }
