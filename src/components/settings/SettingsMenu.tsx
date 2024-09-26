@@ -125,7 +125,7 @@ export default function SettingsMenu() {
   let content = (
     <>
       {settings.map((item) => {
-        if (item.item === "enableVibrate" && !isOnMobileDevice) return null;
+        if (item.item === "enableVibrate" && (!isOnMobileDevice || !navigator.vibrate)) return null;
         if (item.item !== "enableSounds")
           return (
             <Toggle

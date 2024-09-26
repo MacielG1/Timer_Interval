@@ -41,10 +41,10 @@ export default function MainMenu() {
   const changeTitle = (title: string) => (document.title = title);
 
   let playSound = useAudio(start, stop, sound1, sound2);
-  const { enableScreenWake, releaseScreenWake } = useScreenWake(); // Destructure the functions
+  const { enableScreenWake, releaseScreenWake } = useScreenWake();
 
   useEffect(() => {
-    let isMounted = true; //  used in the cleanup function
+    let isMounted = true;
 
     if (timer && isMounted) {
       enableScreenWake();
@@ -93,19 +93,16 @@ export default function MainMenu() {
 
       if (enableSounds) {
         if (whichInterval === "work" && time == 0) {
+          if (enableVibrate) vibrate();
           if (preferredSound === "audio1") {
             playSound(sound1);
           } else if (preferredSound === "audio2") {
             playSound(start);
           }
         } else if (whichInterval === "work" && time == +workTime) {
+          if (enableVibrate) vibrate();
           if (preferredSound === "audio1") playSound(sound2);
           else if (preferredSound === "audio2") playSound(stop);
-        }
-      }
-      if (enableVibrate) {
-        if ((whichInterval === "work" && time == 0) || (whichInterval === "work" && time == +workTime)) {
-          vibrate();
         }
       }
 
