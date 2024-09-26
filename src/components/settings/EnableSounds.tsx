@@ -7,41 +7,24 @@ import sound1 from "../../assets/sounds/sound1.mp3";
 import sound2 from "../../assets/sounds/sound2.mp3";
 import start from "../../assets/sounds/start.mp3";
 import stop from "../../assets/sounds/stop.mp3";
-import { useEffect } from "react";
 
 type ToggleProps = {
   preferredLanguage: "en" | "pt" | "fr";
   handleToggleSetting: (key: string, setState: (value: boolean) => void, state: boolean) => void;
+  soundsSettings: { item: string; state: boolean; setState: (value: boolean) => void; text: { en: string; pt: string; fr: string } } | undefined;
 };
 
-export default function EnableSounds({ handleToggleSetting, preferredLanguage }: ToggleProps) {
-  const [enableSounds, setEnableSounds] = useStore((state) => [state.enableSounds, state.setEnableSounds]);
+export default function EnableSounds({ handleToggleSetting, preferredLanguage, soundsSettings }: ToggleProps) {
   const [preferredSound, setPreferredSound] = useStore((state) => [state.preferredSound, state.setPreferredSound]);
   const playSoundsType1 = useAudio(sound1, sound2);
   const playSoundsType2 = useAudio(start, stop);
-
-  const soundsSettings = {
-    item: "enableSounds",
-    state: enableSounds,
-    setState: setEnableSounds,
-    text: {
-      en: "Enable sounds",
-      pt: "Ativar sons",
-      fr: "Activer les sons",
-    },
-  };
-
-  useEffect(() => {
-    const settings = JSON.parse(localStorage.getItem(soundsSettings.item) || "null");
-    if (settings !== null) {
-      setEnableSounds(settings);
-    }
-  }, []);
 
   function onValueChange(sound: "audio1" | "audio2") {
     localStorage.setItem("audioType", sound);
     setPreferredSound(sound);
   }
+
+  if (!soundsSettings) return null;
 
   return (
     <div className="flex">

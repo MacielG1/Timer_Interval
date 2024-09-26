@@ -20,6 +20,8 @@ export default function SettingsMenu() {
   const [prepOnEveryRound, setPrepOnEveryRound] = useStore((state) => [state.prepareonEveryRound, state.setPrepareonEveryRound]);
   const [enableVibrate, setEnableVibrate] = useStore((state) => [state.enableVibrate, state.setEnableVibrate]);
 
+  const [enableSounds, setEnableSounds] = useStore((state) => [state.enableSounds, state.setEnableSounds]);
+
   const settings = [
     {
       item: "skipLastRest",
@@ -72,6 +74,16 @@ export default function SettingsMenu() {
         fr: "Activer la vibration",
       },
     },
+    {
+      item: "enableSounds",
+      state: enableSounds,
+      setState: setEnableSounds,
+      text: {
+        en: "Enable sounds",
+        pt: "Ativar sons",
+        fr: "Activer les sons",
+      },
+    },
   ];
 
   useEffect(() => {
@@ -89,7 +101,6 @@ export default function SettingsMenu() {
     setState(newValue);
   }
 
-  // language useEffect
   let supportedLanguages = ["en", "pt", "fr"];
 
   useEffect(() => {
@@ -115,16 +126,21 @@ export default function SettingsMenu() {
     <>
       {settings.map((item) => {
         if (item.item === "enableVibrate" && !isOnMobileDevice) return null;
-        return (
-          <Toggle
-            key={item.item}
-            text={item.text[preferredLanguage]}
-            isActive={item.state}
-            toggleActive={() => handleToggleSetting(item.item, item.setState, item.state)}
-          />
-        );
+        if (item.item !== "enableSounds")
+          return (
+            <Toggle
+              key={item.item}
+              text={item.text[preferredLanguage]}
+              isActive={item.state}
+              toggleActive={() => handleToggleSetting(item.item, item.setState, item.state)}
+            />
+          );
       })}
-      <EnableSounds handleToggleSetting={handleToggleSetting} preferredLanguage={preferredLanguage} />
+      <EnableSounds
+        handleToggleSetting={handleToggleSetting}
+        preferredLanguage={preferredLanguage}
+        soundsSettings={settings.find((item) => item.item === "enableSounds")}
+      />
       <a href="https://www.buymeacoffee.com/macielg1" target="_blank" referrerPolicy="no-referrer" className="mx-auto my-1 inline-block">
         <img
           src={`https://img.buymeacoffee.com/button-api/?text=${supportText[preferredLanguage]}&emoji=☕&slug=macielg1&button_colour=0091ff&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00`}

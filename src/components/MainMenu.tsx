@@ -90,6 +90,7 @@ export default function MainMenu() {
           setMainTimerBorder(restColor);
         }
       }
+
       if (enableSounds) {
         if (whichInterval === "work" && time == 0) {
           if (preferredSound === "audio1") {
