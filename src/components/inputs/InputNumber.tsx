@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useStore from "../../store/useStore";
 import pad from "../../utils/PadNum";
+import { useShallow } from "zustand/shallow";
 
 type InputNumberProps = {
   label: string;
@@ -13,11 +14,11 @@ export default function InputNumber(props: InputNumberProps) {
   const { label, className, nogap, inputStoreType, maxLength = 3 } = props;
 
   const [isFocused, setIsFocused] = useState(false);
-  let count = useStore((state) => state[inputStoreType]);
-  const increase = useStore((state) => state[`increase${inputStoreType}`]);
-  const decrease = useStore((state) => state[`decrease${inputStoreType}`]);
-  const setCount = useStore((state) => state[`set${inputStoreType}`]);
-  const isLoadingSavedTimer = useStore((state) => state.isLoadingSavedTimer);
+  let count = useStore(useShallow((state) => state[inputStoreType]));
+  const increase = useStore(useShallow((state) => state[`increase${inputStoreType}`]));
+  const decrease = useStore(useShallow((state) => state[`decrease${inputStoreType}`]));
+  const setCount = useStore(useShallow((state) => state[`set${inputStoreType}`]));
+  const isLoadingSavedTimer = useStore(useShallow((state) => state.isLoadingSavedTimer));
 
   useEffect(() => {
     const latestTimer = localStorage.getItem("latestTimer");

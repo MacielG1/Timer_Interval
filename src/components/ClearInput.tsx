@@ -1,9 +1,10 @@
+import { useShallow } from "zustand/shallow";
 import { Icons } from "../assets/Icons";
 import useStore from "../store/useStore";
 
 export default function ClearInput() {
-  const clearInputFields = useStore((state) => state.clearInputFields);
-  const preferredLanguage = useStore((state) => state.preferredLanguage);
+  const clearInputFields = useStore(useShallow((state) => state.clearInputFields));
+  const preferredLanguage = useStore(useShallow((state) => state.preferredLanguage));
 
   function handleClear() {
     clearInputFields();

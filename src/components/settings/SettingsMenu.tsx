@@ -7,20 +7,21 @@ import { isMobileDevice } from "../../utils/Vibrate";
 import ImportExportTimers from "./ImportExportTimers";
 import { Icons } from "../../assets/Icons";
 import EnableSounds from "./EnableSounds";
+import { useShallow } from "zustand/shallow";
 
 export default function SettingsMenu() {
   let [isOpen, setIsOpen] = useState(false);
 
-  const [preferredLanguage, setPreferredLanguage] = useStore((state) => [state.preferredLanguage, state.setPreferredLanguage]);
-  const [skipLastRest, setSkipLastRest] = useStore((state) => [state.skipLastRest, state.setSkipLastRest]);
+  const [preferredLanguage, setPreferredLanguage] = useStore(useShallow((state) => [state.preferredLanguage, state.setPreferredLanguage]));
+  const [skipLastRest, setSkipLastRest] = useStore(useShallow((state) => [state.skipLastRest, state.setSkipLastRest]));
 
-  const [enableBgColors, setEnableBgColors] = useStore((state) => [state.enableBackgroundColors, state.setEnableBackgroundColors]);
-  const [autoRestartonReset, setAutoRestartonReset] = useStore((state) => [state.autoRestartonReset, state.setAutoRestartonReset]);
+  const [enableBgColors, setEnableBgColors] = useStore(useShallow((state) => [state.enableBackgroundColors, state.setEnableBackgroundColors]));
+  const [autoRestartonReset, setAutoRestartonReset] = useStore(useShallow((state) => [state.autoRestartonReset, state.setAutoRestartonReset]));
 
-  const [prepOnEveryRound, setPrepOnEveryRound] = useStore((state) => [state.prepareonEveryRound, state.setPrepareonEveryRound]);
-  const [enableVibrate, setEnableVibrate] = useStore((state) => [state.enableVibrate, state.setEnableVibrate]);
+  const [prepOnEveryRound, setPrepOnEveryRound] = useStore(useShallow((state) => [state.prepareonEveryRound, state.setPrepareonEveryRound]));
+  const [enableVibrate, setEnableVibrate] = useStore(useShallow((state) => [state.enableVibrate, state.setEnableVibrate]));
 
-  const [enableSounds, setEnableSounds] = useStore((state) => [state.enableSounds, state.setEnableSounds]);
+  const [enableSounds, setEnableSounds] = useStore(useShallow((state) => [state.enableSounds, state.setEnableSounds]));
 
   const settings = [
     {

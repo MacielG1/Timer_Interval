@@ -1,11 +1,12 @@
+import { useShallow } from "zustand/shallow";
 import useStore from "../../store/useStore";
 import { useState, useEffect, ChangeEvent } from "react";
 
 export default function ImportExportTimers() {
   const [isExportable, setIsExportable] = useState(false);
 
-  const setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
-  const preferredLanguage = useStore((state) => state.preferredLanguage);
+  const setSavedWorkouts = useStore(useShallow((state) => state.setSavedWorkouts));
+  const preferredLanguage = useStore(useShallow((state) => state.preferredLanguage));
 
   useEffect(() => {
     const savedTimers = JSON.parse(localStorage.getItem("savedTimer") || "[]");

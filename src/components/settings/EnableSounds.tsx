@@ -7,6 +7,7 @@ import sound1 from "../../assets/sounds/sound1.mp3";
 import sound2 from "../../assets/sounds/sound2.mp3";
 import start from "../../assets/sounds/start.mp3";
 import stop from "../../assets/sounds/stop.mp3";
+import { useShallow } from "zustand/shallow";
 
 type ToggleProps = {
   preferredLanguage: "en" | "pt" | "fr";
@@ -15,7 +16,7 @@ type ToggleProps = {
 };
 
 export default function EnableSounds({ handleToggleSetting, preferredLanguage, soundsSettings }: ToggleProps) {
-  const [preferredSound, setPreferredSound] = useStore((state) => [state.preferredSound, state.setPreferredSound]);
+  const [preferredSound, setPreferredSound] = useStore(useShallow((state) => [state.preferredSound, state.setPreferredSound]));
   const playSoundsType1 = useAudio(sound1, sound2);
   const playSoundsType2 = useAudio(start, stop);
 

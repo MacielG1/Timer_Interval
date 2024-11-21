@@ -4,6 +4,7 @@ import useStore from "../store/useStore";
 import { inputSettings as lang } from "../utils/lang";
 import type { savedWorkoutType } from "../store/slices/localStorage";
 import { Icons } from "../assets/Icons";
+import { useShallow } from "zustand/shallow";
 
 export default function SidebarItem({ item }: { item: savedWorkoutType }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: item.id });
@@ -13,9 +14,9 @@ export default function SidebarItem({ item }: { item: savedWorkoutType }) {
     transition,
   };
 
-  const [savedWorkouts, setSavedWorkouts] = useStore((state) => [state.savedWorkouts, state.setSavedWorkouts]);
-  const [SetIsLoadingSavedTimer, preferredLanguage] = useStore((state) => [state.SetIsLoadingSavedTimer, state.preferredLanguage]);
-  const [removeBorders, enableBackgroundColors] = useStore((state) => [state.removeUIBorders, state.enableBackgroundColors]);
+  const [savedWorkouts, setSavedWorkouts] = useStore(useShallow((state) => [state.savedWorkouts, state.setSavedWorkouts]));
+  const [SetIsLoadingSavedTimer, preferredLanguage] = useStore(useShallow((state) => [state.SetIsLoadingSavedTimer, state.preferredLanguage]));
+  const [removeBorders, enableBackgroundColors] = useStore(useShallow((state) => [state.removeUIBorders, state.enableBackgroundColors]));
 
   function handleDelete(id: string) {
     let timers = savedWorkouts.filter((i) => i.id !== id);

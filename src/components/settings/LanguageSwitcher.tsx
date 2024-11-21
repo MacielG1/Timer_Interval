@@ -2,6 +2,7 @@ import useStore from "../../store/useStore";
 
 import { localStorageType } from "../../store/slices/localStorage";
 import { Icons } from "../../assets/Icons";
+import { useShallow } from "zustand/shallow";
 
 const countries = [
   { name: "en", flag: <Icons.uk className="w-7" /> },
@@ -10,8 +11,8 @@ const countries = [
 ];
 
 export default function Dropdown() {
-  const preferredLanguage = useStore((state) => state.preferredLanguage);
-  const setPreferredLanguage = useStore((state) => state.setPreferredLanguage);
+  const preferredLanguage = useStore(useShallow((state) => state.preferredLanguage));
+  const setPreferredLanguage = useStore(useShallow((state) => state.setPreferredLanguage));
 
   const selectedCountry = countries.find((country) => country.name === preferredLanguage);
   const FlagIcon = selectedCountry ? selectedCountry.flag : null;

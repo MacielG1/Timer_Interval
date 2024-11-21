@@ -2,10 +2,11 @@ import Sidebar from "./components/Sidebar";
 import SettingsMenu from "./components/settings/SettingsMenu";
 import useStore from "./store/useStore";
 import TimerApp from "./components/TimerApp";
+import { useShallow } from "zustand/shallow";
 
 export default function App() {
-  const bgColor = useStore((state) => state.currentBackgroundColor);
-  const enableBackgroundColors = useStore((state) => state.enableBackgroundColors);
+  const bgColor = useStore(useShallow((state) => state.currentBackgroundColor));
+  const enableBackgroundColors = useStore(useShallow((state) => state.enableBackgroundColors));
 
   return (
     <main

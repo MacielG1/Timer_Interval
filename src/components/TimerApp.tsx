@@ -5,12 +5,13 @@ import SaveTimer from "./SaveTimer";
 import useStore from "../store/useStore";
 import MenuButtons from "./MenuButtons";
 import { useState, useEffect } from "react";
+import { useShallow } from "zustand/shallow";
 
 export default function TimerApp() {
-  const [removeBorders, mainTimerBorder] = useStore((state) => [state.removeUIBorders, state.mainTimerBorder]);
-  const [enableBackgroundColors, savedWorkouts] = useStore((state) => [state.enableBackgroundColors, state.savedWorkouts]);
+  const [removeBorders, mainTimerBorder] = useStore(useShallow((state) => [state.removeUIBorders, state.mainTimerBorder]));
+  const [enableBackgroundColors, savedWorkouts] = useStore(useShallow((state) => [state.enableBackgroundColors, state.savedWorkouts]));
   const [isSmallScreen, setIsSmallScreen] = useState(window.matchMedia("(max-width: 600px)").matches);
-  const setPreferredSound = useStore((state) => state.setPreferredSound);
+  const setPreferredSound = useStore(useShallow((state) => state.setPreferredSound));
 
   function handleMediaQueryChange(mediaQuery: MediaQueryListEvent) {
     if (mediaQuery.matches) setIsSmallScreen(true);

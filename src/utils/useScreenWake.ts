@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import useStore from "../store/useStore";
+import { useShallow } from "zustand/shallow";
 
 export default function useScreenWake() {
-  const [wakeLock, setWakeLock] = useStore((state) => [state.wakeLock, state.setWakeLock]);
+  const [wakeLock, setWakeLock] = useStore(useShallow((state) => [state.wakeLock, state.setWakeLock]));
 
   const enableScreenWake = useCallback(async () => {
     if (!wakeLock) {

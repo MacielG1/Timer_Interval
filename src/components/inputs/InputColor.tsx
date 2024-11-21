@@ -1,11 +1,12 @@
+import { useShallow } from "zustand/shallow";
 import useStore from "../../store/useStore";
 
 type InputColorProps = {
   inputType: "WorkColor" | "RestColor" | "PrepColor";
 };
 export default function InputColor({ inputType }: InputColorProps) {
-  const color = useStore((state) => state[inputType]);
-  const setColor = useStore((state) => state[`set${inputType}`]);
+  const color = useStore(useShallow((state) => state[inputType]));
+  const setColor = useStore(useShallow((state) => state[`set${inputType}`]));
 
   function handleColor(e: React.ChangeEvent<HTMLInputElement>) {
     setColor(e.target.value);

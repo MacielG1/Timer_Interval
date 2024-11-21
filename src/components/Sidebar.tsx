@@ -3,9 +3,10 @@ import { DndContext, DragEndEvent, MouseSensor, TouchSensor, closestCenter, useS
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import SidebarItem from "./SidebarItem";
+import { useShallow } from "zustand/shallow";
 
 export default function Sidebar() {
-  const [savedWorkouts, setSavedWorkouts] = useStore((state) => [state.savedWorkouts, state.setSavedWorkouts]);
+  const [savedWorkouts, setSavedWorkouts] = useStore(useShallow((state) => [state.savedWorkouts, state.setSavedWorkouts]));
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {

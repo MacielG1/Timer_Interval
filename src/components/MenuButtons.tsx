@@ -2,14 +2,15 @@ import { useEventListener } from "usehooks-ts";
 import useStore from "../store/useStore";
 import Timer from "../utils/Timer";
 import Button from "./Button";
+import { useShallow } from "zustand/shallow";
 
 export default function MenuButtons() {
-  const [setWorkTime, setRestTime, setPrepTime] = useStore((state) => [state.setWorkTime, state.setRestTime, state.setPrepTime]);
-  const [setRoundsSelected, setTimer, timeIncrease] = useStore((state) => [state.setRoundsSelected, state.setTimer, state.timeIncrease]);
+  const [setWorkTime, setRestTime, setPrepTime] = useStore(useShallow((state) => [state.setWorkTime, state.setRestTime, state.setPrepTime]));
+  const [setRoundsSelected, setTimer, timeIncrease] = useStore(useShallow((state) => [state.setRoundsSelected, state.setTimer, state.timeIncrease]));
 
-  const [timer, resetTimer, getTimer] = useStore((state) => [state.timer, state.resetTimer, state.getTimer]);
-  const [updateWorkoutFullTime, isPaused, setIsPaused] = useStore((state) => [state.updateWorkoutFullTime, state.isPaused, state.setIsPaused]);
-  const [autoRestartonReset, preferredLanguage] = useStore((state) => [state.autoRestartonReset, state.preferredLanguage]);
+  const [timer, resetTimer, getTimer] = useStore(useShallow((state) => [state.timer, state.resetTimer, state.getTimer]));
+  const [updateWorkoutFullTime, isPaused, setIsPaused] = useStore(useShallow((state) => [state.updateWorkoutFullTime, state.isPaused, state.setIsPaused]));
+  const [autoRestartonReset, preferredLanguage] = useStore(useShallow((state) => [state.autoRestartonReset, state.preferredLanguage]));
 
   function handleStart() {
     if (isPaused) setIsPaused(false);

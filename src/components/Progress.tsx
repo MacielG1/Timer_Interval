@@ -1,21 +1,24 @@
 import { useEventListener } from "usehooks-ts";
 import useStore from "../store/useStore";
 import Timer from "../utils/Timer";
+import { useShallow } from "zustand/shallow";
 
 export default function Progress() {
-  const [progressBarValue, progressBarMax, currentProgressColor] = useStore((state) => [state.progressBarValue, state.progressBarMax, state.currentProgressColor]);
-  const [setTotalTimePassed, totalTimePassed] = useStore((state) => [state.setTotalTimePassed, state.totalTimePassed]);
+  const [progressBarValue, progressBarMax, currentProgressColor] = useStore(
+    useShallow((state) => [state.progressBarValue, state.progressBarMax, state.currentProgressColor]),
+  );
+  const [setTotalTimePassed, totalTimePassed] = useStore(useShallow((state) => [state.setTotalTimePassed, state.totalTimePassed]));
 
-  const [currentRound, setCurrentRound] = useStore((state) => [state.currentRound, state.setCurrentRound]);
-  const [whichInterval, setWhichInterval] = useStore((state) => [state.whichInterval, state.setWhichInterval]);
+  const [currentRound, setCurrentRound] = useStore(useShallow((state) => [state.currentRound, state.setCurrentRound]));
+  const [whichInterval, setWhichInterval] = useStore(useShallow((state) => [state.whichInterval, state.setWhichInterval]));
 
-  const [isPaused, totalRounds] = useStore((state) => [state.isPaused, state.roundsSelected]);
-  const [time, setTime] = useStore((state) => [state.time, state.setTime]);
+  const [isPaused, totalRounds] = useStore(useShallow((state) => [state.isPaused, state.roundsSelected]));
+  const [time, setTime] = useStore(useShallow((state) => [state.time, state.setTime]));
 
-  const [timer, resetTimer, setTimer] = useStore((state) => [state.timer, state.resetTimer, state.setTimer]);
-  const [workTime, restTime] = useStore((state) => [state.workTime, state.restTime]);
-  const [prepareonEveryRound, skipLastRest] = useStore((state) => [state.prepareonEveryRound, state.skipLastRest]);
-  const [timeIncrease, changeInterval] = useStore((state) => [state.timeIncrease, state.changeInterval]);
+  const [timer, resetTimer, setTimer] = useStore(useShallow((state) => [state.timer, state.resetTimer, state.setTimer]));
+  const [workTime, restTime] = useStore(useShallow((state) => [state.workTime, state.restTime]));
+  const [prepareonEveryRound, skipLastRest] = useStore(useShallow((state) => [state.prepareonEveryRound, state.skipLastRest]));
+  const [timeIncrease, changeInterval] = useStore(useShallow((state) => [state.timeIncrease, state.changeInterval]));
 
   function handlePrev() {
     if (isPaused) return;

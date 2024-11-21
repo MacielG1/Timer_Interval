@@ -13,30 +13,29 @@ import { changeFavicon } from "../utils/changeFavicon";
 import convertSecToMinSec from "../utils/convertSecToMinSec";
 import { useAudio } from "../utils/playSound";
 import useScreenWake from "../utils/useScreenWake";
+import { useShallow } from "zustand/shallow";
 
 export default function MainMenu() {
-  const [totalRounds, currentRound, currentRoundIncrease] = useStore((state) => [state.roundsSelected, state.currentRound, state.currentRoundIncrease]);
-  const [whichInterval, setWhichInterval] = useStore((state) => [state.whichInterval, state.setWhichInterval]);
+  const [totalRounds, currentRound, currentRoundIncrease] = useStore(useShallow((state) => [state.roundsSelected, state.currentRound, state.currentRoundIncrease]));
+  const [whichInterval, setWhichInterval] = useStore(useShallow((state) => [state.whichInterval, state.setWhichInterval]));
 
-  const [workTime, restTime, prepTime] = useStore((state) => [state.workTime, state.restTime, state.prepTime]);
-  const [timer, time, setTime] = useStore((state) => [state.timer, state.time, state.setTime]);
+  const [workTime, restTime, prepTime] = useStore(useShallow((state) => [state.workTime, state.restTime, state.prepTime]));
+  const [timer, time, setTime] = useStore(useShallow((state) => [state.timer, state.time, state.setTime]));
 
-  const [workoutFullTime, increaseTotalTimePassed] = useStore((state) => [state.workoutFullTime, state.increaseTotalTimePassed]);
-  const [setProgressBarValue, setProgressBarMax] = useStore((state) => [state.setProgressBarValue, state.setProgressBarMax]);
+  const [workoutFullTime, increaseTotalTimePassed] = useStore(useShallow((state) => [state.workoutFullTime, state.increaseTotalTimePassed]));
+  const [setProgressBarValue, setProgressBarMax] = useStore(useShallow((state) => [state.setProgressBarValue, state.setProgressBarMax]));
 
-  const [setCurrentProgressColor, setCurrentBackgroundColor] = useStore((state) => [state.setCurrentProgressColor, state.setCurrentBackgroundColor]);
-  const [workColor, restColor, prepColor] = useStore((state) => [state.WorkColor, state.RestColor, state.PrepColor]);
+  const [setCurrentProgressColor, setCurrentBackgroundColor] = useStore(useShallow((state) => [state.setCurrentProgressColor, state.setCurrentBackgroundColor]));
+  const [workColor, restColor, prepColor] = useStore(useShallow((state) => [state.WorkColor, state.RestColor, state.PrepColor]));
 
-  const [skipLastRest, resetTimer] = useStore((state) => [state.skipLastRest, state.resetTimer]);
-  const [enableBackgroundColors, setRemoveUIBorders, setMainTimerBorder] = useStore((state) => [
-    state.enableBackgroundColors,
-    state.setRemoveUIBorders,
-    state.setMainTimerBorder,
-  ]);
+  const [skipLastRest, resetTimer] = useStore(useShallow((state) => [state.skipLastRest, state.resetTimer]));
+  const [enableBackgroundColors, setRemoveUIBorders, setMainTimerBorder] = useStore(
+    useShallow((state) => [state.enableBackgroundColors, state.setRemoveUIBorders, state.setMainTimerBorder]),
+  );
 
-  const [enableSounds, enableVibrate, prepareonEveryRound] = useStore((state) => [state.enableSounds, state.enableVibrate, state.prepareonEveryRound]);
-  const preferredLanguage = useStore((state) => state.preferredLanguage);
-  const preferredSound = useStore((state) => state.preferredSound);
+  const [enableSounds, enableVibrate, prepareonEveryRound] = useStore(useShallow((state) => [state.enableSounds, state.enableVibrate, state.prepareonEveryRound]));
+  const preferredLanguage = useStore(useShallow((state) => state.preferredLanguage));
+  const preferredSound = useStore(useShallow((state) => state.preferredSound));
 
   const changeTitle = (title: string) => (document.title = title);
 

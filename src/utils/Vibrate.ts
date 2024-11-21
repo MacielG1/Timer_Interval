@@ -5,6 +5,6 @@ export function isMobileDevice() {
 
 export default async function vibrate() {
   if (navigator.vibrate) {
-    navigator.vibrate(200);
+    navigator.vibrate(400);
   }
 }

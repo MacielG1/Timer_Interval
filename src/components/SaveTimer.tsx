@@ -1,21 +1,22 @@
+import { useShallow } from "zustand/shallow";
 import useStore from "../store/useStore";
 import { useState, useEffect } from "react";
 
 export default function SaveTimer() {
   const [timerName, setTimerName] = useState("");
 
-  const Rounds = useStore((state) => state.Rounds);
-  const workMin = useStore((state) => state.WorkMinutes);
-  const workSec = useStore((state) => state.WorkSeconds);
-  const workColor = useStore((state) => state.WorkColor);
-  const restMin = useStore((state) => state.RestMinutes);
-  const restSec = useStore((state) => state.RestSeconds);
-  const restColor = useStore((state) => state.RestColor);
-  const prepMin = useStore((state) => state.PrepareMinutes);
-  const prepSec = useStore((state) => state.PrepareSeconds);
-  const prepColor = useStore((state) => state.PrepColor);
-  const setSavedWorkouts = useStore((state) => state.setSavedWorkouts);
-  const preferredLanguage = useStore((state) => state.preferredLanguage);
+  const Rounds = useStore(useShallow((state) => state.Rounds));
+  const workMin = useStore(useShallow((state) => state.WorkMinutes));
+  const workSec = useStore(useShallow((state) => state.WorkSeconds));
+  const workColor = useStore(useShallow((state) => state.WorkColor));
+  const restMin = useStore(useShallow((state) => state.RestMinutes));
+  const restSec = useStore(useShallow((state) => state.RestSeconds));
+  const restColor = useStore(useShallow((state) => state.RestColor));
+  const prepMin = useStore(useShallow((state) => state.PrepareMinutes));
+  const prepSec = useStore(useShallow((state) => state.PrepareSeconds));
+  const prepColor = useStore(useShallow((state) => state.PrepColor));
+  const setSavedWorkouts = useStore(useShallow((state) => state.setSavedWorkouts));
+  const preferredLanguage = useStore(useShallow((state) => state.preferredLanguage));
 
   useEffect(() => {
     let timerStorage = JSON.parse(localStorage.getItem("savedTimer") || "[]");
