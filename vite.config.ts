@@ -1,10 +1,16 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import Unfonts from "unplugin-fonts/vite";
-
+const ReactCompilerConfig = {
+  /* ... */
+};
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: ["babel-plugin-react-compiler", ReactCompilerConfig],
+      },
+    }),
     Unfonts({
       google: {
         families: [

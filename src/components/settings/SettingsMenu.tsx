@@ -142,13 +142,6 @@ export default function SettingsMenu() {
         preferredLanguage={preferredLanguage}
         soundsSettings={settings.find((item) => item.item === "enableSounds")}
       />
-      <a href="https://www.buymeacoffee.com/macielg1" target="_blank" referrerPolicy="no-referrer" className="mx-auto my-1 inline-block">
-        <img
-          src={`https://img.buymeacoffee.com/button-api/?text=${supportText[preferredLanguage]}&emoji=☕&slug=macielg1&button_colour=0091ff&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00`}
-          alt="Buy Me A Coffee"
-          className="w-48"
-        />
-      </a>
       <ImportExportTimers />
       <LanguageSwitcher />
     </>
