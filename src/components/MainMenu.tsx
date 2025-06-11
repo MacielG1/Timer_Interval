@@ -8,6 +8,7 @@ import sound1 from "../assets/sounds/sound1.mp3";
 import sound2 from "../assets/sounds/sound2.mp3";
 import start from "../assets/sounds/start.mp3";
 import stop from "../assets/sounds/stop.mp3";
+import end from "../assets/sounds/end.mp3";
 import { inputSettings as lang } from "../utils/lang";
 import { changeFavicon } from "../utils/changeFavicon";
 import convertSecToMinSec from "../utils/convertSecToMinSec";
@@ -39,7 +40,7 @@ export default function MainMenu() {
 
   const changeTitle = (title: string) => (document.title = title);
 
-  let playSound = useAudio(start, stop, sound1, sound2);
+  let playSound = useAudio(start, stop, sound1, sound2, end);
   const { enableScreenWake, releaseScreenWake } = useScreenWake();
 
   useEffect(() => {
@@ -100,8 +101,19 @@ export default function MainMenu() {
           }
         } else if (whichInterval === "work" && time == +workTime) {
           if (enableVibrate) vibrate();
-          if (preferredSound === "audio1") playSound(sound2);
-          else if (preferredSound === "audio2") playSound(stop);
+          if (preferredSound === "audio1") {
+            if (currentRound === totalRounds && skipLastRest) {
+              playSound(end);
+            } else {
+              playSound(sound2);
+            }
+          } else if (preferredSound === "audio2") {
+            if (currentRound === totalRounds && skipLastRest) {
+              playSound(end);
+            } else {
+              playSound(stop);
+            }
+          }
         }
       }
 
@@ -122,12 +134,15 @@ export default function MainMenu() {
         }
       } else if (whichInterval === "rest" && time > +restTime) {
         if (currentRound === totalRounds) {
+          if (enableSounds) {
+            if (enableVibrate) vibrate();
+            playSound(end);
+          }
           timer?.stop();
           resetTimer();
           changeFavicon("#2361e8");
           changeTitle("Timer Interval");
           releaseScreenWake();
-
           return;
         } else {
           currentRoundIncrease();
