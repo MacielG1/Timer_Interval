@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 330px;
+}
 
 @layer base {
   input[type="number"]::-webkit-inner-spin-button,
